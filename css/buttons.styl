@@ -1,0 +1,245 @@
+
+.nexButton
+  -webkit-font-smoothing: antialiased
+  line-height: 160%
+  vertical-align: baseline
+  font-family: arial, helvetica, clean, sans-serif
+  position: relative
+  cursor: pointer
+
+  border-radius: 1px
+  box-shadow: 0 1px 2px 0px rgba(0,0,0,0.1)
+  padding: 1px 6px 1px 7px
+
+  text-decoration: none
+  text-transform: lowercase
+  -webkit-font-smoothing: atialiased
+  user-select: none
+
+.nexButtonRounded
+  border-radius: 11px
+  padding: 2px 8px 3px 8px
+  box-shadow: none
+
+.nexButtonSmall
+  font-size: 11px
+  padding-top: 1px
+  padding-bottom: 2px
+
+.nexButtonRegular
+  font-size: 13px
+  padding-top: 1px
+  padding-bottom: 2px
+
+.nexButtonLarge
+  font-size: 15px
+  padding-top: 1px
+  padding-bottom: 2px
+
+
+.nexButtonWhite
+  text-shadow: 1px 1px 0px white
+  color: lighten(black, 30%)
+  border-top: 1px solid white
+  border-bottom: 1px solid darken(white, 20%)
+
+.nexButtonWhiteIn
+  @extends .nexButtonWhite
+  vbg-gradient(darken(white, 12%), darken(white, 5%))
+
+.nexButtonWhiteOut
+  @extends .nexButtonWhite
+  vbg-gradient(darken(white, 0%), darken(white, 10%))
+
+
+
+
+.btnSmallIn
+  @extends .nexButton
+  @extends .nexButtonSmall
+  @extends .nexButtonWhiteIn
+
+.btnRegularIn
+  @extends .nexButton
+  @extends .nexButtonRegular
+  @extends .nexButtonWhiteIn
+
+.btnLargeIn
+  @extends .nexButton
+  @extends .nexButtonLarge
+  @extends .nexButtonWhiteIn
+
+
+.btnSmallIn:hover
+.btnRegularIn:hover
+.btnLargeIn:hover
+  vbg-gradient(darken(white, 3%), darken(white, 12%))
+
+.btnSmallIn:active
+.btnRegularIn:active
+.btnLargeIn:active
+  box-shadow: none
+  vbg-gradient(darken(white, 8%), darken(white, 18%))
+  border-top: 1px solid darken(white, 12%)
+  border-bottom: 1px solid darken(white, 13%)
+
+
+
+
+.btnSmallOut
+  @extends .nexButton
+  @extends .nexButtonSmall
+  @extends .nexButtonWhiteOut
+
+.btnRegularOut
+  @extends .nexButton
+  @extends .nexButtonRegular
+  @extends .nexButtonWhiteOut
+
+.btnLargeOut
+  @extends .nexButton
+  @extends .nexButtonLarge
+  @extends .nexButtonWhiteOut
+
+.btnSmallOut:hover
+.btnRegularOut:hover
+.btnLargeOut:hover
+  vbg-gradient(darken(white, 12%), darken(white, 3%))
+
+.btnSmallOut:active
+.btnRegularOut:active
+.btnLargeOut:active
+  box-shadow: none
+  vbg-gradient(darken(white, 13%), darken(white, 8%))
+  border-top: 1px solid darken(white, 13%)
+  border-bottom: 1px solid darken(white, 10%)
+
+.btnSmallOut.disabled
+.btnRegularOut.disabled
+.btnLargeOut.disabled
+  box-shadow: none
+  vbg-gradient(darken(white, 13%), darken(white, 8%))
+  border-top: 1px solid darken(white, 13%)
+  border-bottom: 1px solid darken(white, 10%)
+
+
+.selected
+  vbg-gradient(darken(white, 15%), darken(white, 20%))
+
+.btnSmallOut.selected
+.btnSmallOut.active
+  @extends .btnSmallOut
+  @extends .selected
+
+.btnRegularOut.selected
+.btnRegularOut.active
+  @extends .btnRegularOut
+  @extends .selected
+
+.btnLargeOut.selected
+.btnLargeOut.active
+  @extends .btnLargeOut
+  @extends .selected
+
+
+
+
+.btnRoundedSmallOut
+  @extends .nexButton
+  @extends .nexButtonSmall
+  @extends .nexButtonWhiteOut
+  @extends .nexButtonRounded
+
+.btnRoundedRegularOut
+  @extends .nexButton
+  @extends .nexButtonRegular
+  @extends .nexButtonWhiteOut
+  @extends .nexButtonRounded
+
+.btnRoundedLargeOut
+  @extends .nexButton
+  @extends .nexButtonLarge
+  @extends .nexButtonWhiteOut
+  @extends .nexButtonRounded
+
+.btnRoundedSmallOut:hover
+.btnRoundedRegularOut:hover
+.btnRoundedLargeOut:hover
+  vbg-gradient(darken(white, 12%), darken(white, 3%))
+
+.btnRoundedSmallOut:active
+.btnRoundedRegularOut:active
+.btnRoundedLargeOut:active
+  box-shadow: none
+  vbg-gradient(darken(white, 18%), darken(white, 8%))
+  border-top: 1px solid darken(white, 18%)
+  border-bottom: 1px solid darken(white, 10%)
+
+.btnRoundedSmallIn
+  @extends .nexButton
+  @extends .nexButtonSmall
+  @extends .nexButtonWhiteOut
+  @extends .nexButtonRounded
+
+.btnRoundedRegularIn
+  @extends .nexButton
+  @extends .nexButtonRegular
+  @extends .nexButtonWhiteOut
+  @extends .nexButtonRounded
+
+.btnRoundedLargeIn
+  @extends .nexButton
+  @extends .nexButtonLarge
+  @extends .nexButtonWhiteOut
+  @extends .nexButtonRounded
+
+.btnRoundedSmallIn:hover
+.btnRoundedRegularIn:hover
+.btnRoundedLargeIn:hover
+  vbg-gradient(darken(white, 12%), darken(white, 3%))
+
+.btnRoundedSmallIn:active
+.btnRoundedRegularIn:active
+.btnRoundedLargeIn:active
+  box-shadow: none
+  vbg-gradient(darken(white, 18%), darken(white, 8%))
+  border-top: 1px solid darken(white, 18%)
+  border-bottom: 1px solid darken(white, 10%)
+
+
+.prompt
+  .button
+    color: white
+    position: relative
+    text-shadow: 1px 0 0 black
+
+    &:hover
+      color: darken(white, 20%)
+
+    &:active
+      color: white
+      top: 1px
+
+.cube
+  .button
+    color: lighten(black, 40%)
+    position: relative
+    text-shadow: 1px 1px 0 white
+
+    &:hover
+      color: black
+
+    &:active
+      color: lighten(black, 70%)
+
+
+.sortbutton i
+  display: none
+.sortbutton.active i
+  display: inline
+
+// form
+//   background: red
+
+
+

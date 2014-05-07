@@ -1,0 +1,113 @@
+// effects
+.nexslider.slide
+
+  .slide
+    display: none
+    transition: all .25s
+    transform: translateX(-100%)
+    z-index: 2
+
+  .slide.active
+    display: block
+    transform: translateX(0)
+    z-index: 1
+
+  .slide.active ~ .slide
+    transform: translateX(100%)
+
+  .slide.prevslide
+  .slide.nextslide
+    display: block
+
+.nexslider.carousel
+  .slide
+    transition: all 0.35s
+    transform: scale(0) translateX(-200%) rotateY(180deg)
+    display: none
+    z-index: 2
+
+  .slide.active
+    transform: scale(1) translateX(0) rotateY(0deg)
+    display: block
+    z-index: 1
+
+  .slide.active ~ .slide
+    transform: scale(0) translateX(200%) rotateY(-180deg)
+
+  .slide.prevslide
+  .slide.nextslide
+    display: block
+
+.nexslider.slidescale
+  .slide
+    transition: all .25s
+    transform: scale(0) translateX(-100%)
+    display: none
+    z-index: 0
+
+  .slide.active
+    transform: scale(1) translateX(0)
+    display: block
+    z-index: 1
+
+  .slide.active ~ .slide
+    transform: scale(0) translateX(100%)
+
+  .slide.prevslide
+  .slide.nextslide
+    display: block
+
+.nexslider.fade
+  .slide
+    transition: opacity .25s
+    opacity: 0
+    display: none
+    z-index: 0
+
+  .slide.active
+    opacity: 1
+    display: block
+    z-index: 1
+
+  .slide.prevslide
+  .slide.nextslide
+    display: block
+
+.nexslider.scale
+  .slide
+    transition: all .25s
+    transform: scale(0)
+    display: none
+    z-index: 0
+
+  .slide.active
+    transform: scale(1)
+    display: block
+    z-index: 1
+
+  .slide.active ~ .slide
+    transform: scale(0)
+
+  .slide.prevslide
+  .slide.nextslide
+    display: block
+
+.nexslider.scalerotate
+  .slide
+    transition: all .25s
+    transform: scale(0) rotateZ(-30deg)
+    display: none
+    z-index: 0
+
+
+  .slide.active
+    transform: scale(1) rotateZ(0)
+    display: block
+    z-index: 1
+
+  .slide.active ~ .slide
+    transform: scale(0) rotateZ(30deg)
+
+  .slide.prevslide
+  .slide.nextslide
+    display: block

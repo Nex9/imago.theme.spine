@@ -1,0 +1,362 @@
+.imagoimage
+  position: relative
+
+  .image
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    opacity: 0.5
+    transition: opacity 0.1s ease-in-out
+    background-repeat: no-repeat
+
+  &.loaded
+    .image
+      opacity: 1
+    .spin
+    .spin2
+      opacity: 0
+
+.imagovideo
+  position: relative
+  overflow: hidden
+  .imagowrapper
+    background-repeat: no-repeat
+    position: relative
+
+  .spin
+  .spin2
+    opacity: 0
+
+  &.loading
+    .spin
+    .spin2
+      opacity: 1
+
+  &.fit
+    // background: red
+    display: flex
+    flex-direction: column
+    width: 100%
+    height: 100%
+    .imagowrapper
+      video
+        margin: 0 auto
+
+    &.center
+      justify-content: center
+      align-items: center
+
+    &.left
+      align-items: flex-start
+    &.right
+      align-items: flex-end
+    &.top
+      justify-content: flex-start
+    &.bottom
+      justify-content: flex-end
+
+  video
+    display: block
+
+  // video will always extend to 100% width and height
+  &.crop
+    width:  100%
+    height: 100%
+
+    .imagowrapper
+      width:  100%
+      height: 100%
+      position: relative
+
+    &.top
+      video
+        top: 0
+        position: absolute
+    &.right
+      video
+        right: 0
+        position: absolute
+    &.bottom
+      video
+        bottom: 0
+        position: absolute
+    &.left
+      video
+        left: 0
+        position: absolute
+    &.center
+      video
+        position: absolute
+
+  .playbig
+    user-select: none
+    position: absolute
+    z-index: 1
+    top:  50%
+    left: @top
+    width:  160px
+    height: @width
+    margin-top:  -80px
+    margin-left: -65px
+    border-radius: 0
+    padding: 0
+    font-size: 100px
+    line-height: 140px
+    vertical-align: baseline
+    color: white
+    text-align: center
+    cursor: pointer
+    text-shadow: 0 5px 10px black
+    transition: opacity .25s ease-in-out
+    opacity: 1
+    // &:before
+    //   vertical-align: middle
+    //   width:  160px
+    //   height: 160px
+    //   text-align: center
+    //   line-height: 160px
+    &:hover
+      color: darken(white, 20%)
+    &:active
+      color: white
+
+  .controls
+    position: absolute
+    left: 0
+    bottom: 0
+    width: 100%
+    height: 30px
+    vbg-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8))
+    border-top: 1px solid rgba(0,0,0,1)
+    margin: 0
+    padding: 0
+    transition: opacity 0.5s ease-in-out
+    opacity: 0
+
+    &.active
+      opacity: 1
+
+    > span
+    > a
+      display: block
+      height: 30px
+      line-height: 28px
+      padding: 0
+      margin: 0
+      border: none
+      color: white
+      position: absolute
+      bottom: 0
+
+      // background: -webkit-linear-gradient(white, darken(white,10%))
+      // -webkit-background-clip: text
+      // -webkit-text-fill-color: transparent
+      text-shadow: 1px 0 0 black
+
+    a
+      cursor: pointer
+      color: darken(white, 30%)
+    a:hover
+        color: white
+    a:active
+        color: white
+
+    .play
+    .pause
+      left: 15px
+
+    .pause
+      display: none
+
+    .time
+      left: 38px
+      font-family: Arial
+      font-size: 13px
+      line-height: 30px
+
+    .size
+      right: 177px
+      font-size: 13px
+      font-weight: 800
+      text-transform: uppercase
+      width: 25px
+      text-align: center
+      font-family: Arial
+      line-height: 30px
+
+
+    .volume
+      right: 44px
+      width: 120px
+
+      .icon-volume-up
+        position: absolute
+        right: 0
+        top: 7px
+      .icon-volume-down
+        position: absolute
+        left: 0
+        top: 7px
+
+      input
+        top: 7px
+        position: absolute
+        height: 8px
+        border-radius: @height
+        background: lighten(black, 13%)
+        border-color: black
+        border-style: solid
+        border-width: 1px
+        appearance: none
+        width: 80px
+        right: 20px
+
+      input::-webkit-slider-thumb
+        appearance: none
+        width: 8px
+        height: @width
+        vbg-gradient(darken(white, 20%), darken(white, 40%))
+        border-radius: 2px
+        transform: rotate(45deg)
+        box-shadow: 0px 0px 3px black
+
+    .fullscreen
+    .screen
+      right: 15px
+
+    .screen
+      display: none
+
+
+    .seekbar
+      position: absolute
+      left:  97px
+      right: 220px
+      text-align: left
+
+      > span
+        display: block
+
+      .bar
+      .loaded
+      .seek
+        top: 9px
+        position: absolute
+        height: 8px
+        border-radius: @height
+      .bar
+        background: lighten(black, 13%)
+        width 100%
+        border-color: black
+        border-style: solid
+        border-width: 1px
+      .loaded
+        vbg-gradient(lighten(black, 40%), lighten(black, 20%))
+        // border-right: 1px solid rgba(255,255,255,0.3)
+        box-shadow: 1px 0 0 black
+        width: 14%
+        margin: 1px
+
+      .seek
+        background: lighten(black, 13%)
+        width 100%
+        border-color: black
+        border-style: solid
+        border-width: 1px
+        appearance: none
+        top: 7px
+
+        &::-webkit-slider-thumb
+        &::-moz-slider-thumb
+          appearance: none
+          width: 8px
+          height: @width
+          vbg-gradient(darken(white, 20%), darken(white, 40%))
+          border-radius: 2px
+          transform: rotate(45deg)
+          box-shadow: 0px 0px 3px black
+
+
+      .handle
+        position: absolute
+        vbg-gradient(darken(white, 20%), darken(white, 40%))
+        width: 8px
+        height: @width
+        border-radius: 2px
+        transform: rotate(45deg)
+        box-shadow: 0px 1px 3px black
+        top: 10px
+        left: 0
+        margin-left: -4px
+        cursor: pointer
+        &:hover
+          bg-gradient(darken(white, 0%), darken(white, 20%))
+
+.imagovideo.playing
+  background: none
+  .playbig
+    opacity: 0
+  .controls
+    .play
+      display: none
+    .pause
+      display: block
+
+.imagovideo.fullscreen
+  .controls
+    .fullscreen
+      display: none
+    .screen
+      display: block
+
+.imagovideo.hd
+  .controls
+    .size
+      color: white
+
+.imagovideo.sd
+  .controls
+    .size
+      color: darken(white,40%)
+
+
+// spinner
+
+.imagoimage
+  .spin
+  .spin2
+    position: absolute
+    left: 50%
+    top:  50%
+    z-index: 1
+    margin: -20px 0 0 -20px
+
+    width:  30px
+    height: 30px
+
+    border:     6px solid transparent
+    border-top: 6px solid rgba(255,255,255,0.2)
+
+    border-radius: 50%
+    animation: rotate 1.5s infinite linear
+
+    transition: opacity 1s ease
+
+    box-sizing: content-box
+
+  .spin2
+    margin: -17px 0 0 -17px
+    width:  30px
+    height: 30px
+    border-width: 2px
+    border:     3px solid transparent
+    border-top: 3px solid rgba(255,255,255,0.8)
+    animation: rotate 1.5s infinite ease
+
+@keyframes rotate
+  0%
+    transform:rotate(0deg)
+  100%
+    transform:rotate(360deg)
