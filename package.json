@@ -15,7 +15,6 @@
         "jadeify": "^2.1.1",
         "jqueryify": "https://github.com/Nex9/jqueryify/archive/1.10.2.tar.gz",
         "json2ify": "~0.0.3",
-        "nex": "git+ssh://git@git.nex9.com/repo/nex",
         "node-uuid": "^1.4.1",
         "run-sequence": "^0.3.6",
         "spine": "~1.2.0",
@@ -25,7 +24,7 @@
     },
     "devDependencies": {
         "base64-js": "0.0.6",
-        "browser-sync": "^0.8.2",
+        "browser-sync": "^0.9",
         "browserify": "^3.44.2",
         "browserify-shim": "~3.3.1",
         "coffeeify": "^0.6.0",
