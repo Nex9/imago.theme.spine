@@ -15,6 +15,7 @@
         "jadeify": "^2.1.1",
         "jqueryify": "https://github.com/Nex9/jqueryify/archive/1.10.2.tar.gz",
         "json2ify": "~0.0.3",
+        "nex": "git+ssh://git@git.nex9.com/repo/nex",
         "node-uuid": "^1.4.1",
         "run-sequence": "^0.3.6",
         "spine": "~1.2.0",
