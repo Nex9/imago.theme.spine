@@ -16,7 +16,7 @@ plumber         = require "gulp-plumber"
 prefix          = require "gulp-autoprefixer"
 stylus          = require "gulp-stylus"
 uglify          = require "gulp-uglify"
-runSequence     = require "run-sequence"
+# runSequence     = require "run-sequence"
 # uncss           = require "gulp-uncss"
 modRewrite      = require 'connect-modrewrite'
 
@@ -127,6 +127,9 @@ gulp.task "coffee", ->
 
 generateCss = (production = false) ->
   gulp.src paths.stylus
+    .pipe plumber(
+      errorHandler: reportError
+    )
     .pipe stylus({errors: true, set:["compress"]})
     .pipe prefix("last 1 version")
     .pipe concat targets.css
@@ -188,6 +191,7 @@ gulp.task "watch", ["server"], ->
   gulp.watch sources, {interval: 1000}, ['combine']
 
 reportError = (err) ->
+  gutil.beep()
   gutil.log err
   @emit 'end'
 

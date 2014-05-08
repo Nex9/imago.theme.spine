@@ -42,6 +42,20 @@ require('lib/touch');
 
 require('lib/screenfull');
 
+require('nex/lib/nex');
+
+require('nex/lib/utils');
+
+require('nex/lib/models');
+
+require('nex/lib/panel');
+
+require('nex/lib/widgets');
+
+require('nex/lib/page');
+
+require('nex/lib/contact');
+
 });
 require.register("lib/touch", function(exports, require, module){
     var $, m, parentIfText, swipeDirection, touch, types, _fn, _i, _len;
