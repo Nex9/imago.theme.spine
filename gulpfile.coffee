@@ -89,6 +89,9 @@ paths =
 gulp.task "modules", ->
   files = (require.resolve(module) for module in paths.modules)
   gulp.src(files, base: __dirname)
+    .pipe plumber(
+      errorHandler: reportError
+    )
     .pipe rename (path) ->
       path.extname = ""
       path.dirname = path.dirname
@@ -102,6 +105,9 @@ gulp.task "modules", ->
 
 gulp.task "jade", ->
   gulp.src paths.jade
+    .pipe plumber(
+      errorHandler: reportError
+    )
     .pipe jade(client: true).on('error', reportError)
     .pipe insert.prepend "module.exports = "
     .pipe rename extname: ""
@@ -111,6 +117,9 @@ gulp.task "jade", ->
 
 gulp.task "scripts", ->
   gulp.src paths.js
+    .pipe plumber(
+      errorHandler: reportError
+    )
     .pipe rename extname: ""
     .pipe common()
     .pipe concat targets.scripts
@@ -118,6 +127,9 @@ gulp.task "scripts", ->
 
 gulp.task "coffee", ->
   gulp.src paths.coffee
+    .pipe plumber(
+      errorHandler: reportError
+    )
     .pipe coffee(bare: true).on('error', reportError)
     .pipe coffeelint()
     .pipe rename extname: ""
