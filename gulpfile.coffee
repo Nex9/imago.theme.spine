@@ -224,6 +224,6 @@ gulp.task "server", ["prepare"], ->
         modRewrite ['^([^.]+)$ /index.html [L]']
       ]
     debugInfo: false
-    notify: true
+    notify: false
 
 gulp.task "default", ["watch"]
