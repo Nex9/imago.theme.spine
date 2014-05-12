@@ -25,6 +25,7 @@ rename          = require 'gulp-rename'
 insert          = require 'gulp-insert'
 gutil           = require 'gulp-util'
 size            = require 'gulp-size'
+watch           = require('gulp-watch')
 
 
 # Defaults
@@ -187,15 +188,44 @@ gulp.task "combine", combineJs
 
 gulp.task "watch", ["server"], ->
 
-  gulp.watch "**/*.styl", {interval: 1000}, ['stylus']
-  gulp.watch paths.jade, {interval: 2000}, ['jade']
-  gulp.watch paths.coffee, {interval: 2000}, ['coffee']
-  gulp.watch paths.js, {interval: 2000}, ['scripts']
+  watch
+    glob: "**/*.styl"
+  , ->
+    gulp.start('stylus')
+
+  watch
+    glob: paths.jade
+  , ->
+    gulp.start('jade')
+
+  watch
+    glob: paths.jade
+  , ->
+    gulp.start('jade')
+
+  watch
+    glob: paths.coffee
+  , ->
+    gulp.start('coffee')
+
+  watch
+    glob: paths.js
+  , ->
+    gulp.start('scripts')
+
+  # gulp.watch "**/*.styl", {interval: 1000}, ['stylus']
+  # gulp.watch paths.jade, {interval: 2000}, ['jade']
+  # gulp.watch paths.coffee, {interval: 2000}, ['coffee']
+  # gulp.watch paths.js, {interval: 2000}, ['scripts']
 
   files = [targets.scripts, targets.jade, targets.coffee]
   sources = ("#{dest}/#{file}" for file in files)
 
-  gulp.watch sources, {interval: 1000}, ['combine']
+  watch
+    glob: sources
+  , ->
+    gulp.start('combine')
+  # gulp.watch sources, {interval: 1000}, ['combine']
 
 reportError = (err) ->
   gutil.beep()
