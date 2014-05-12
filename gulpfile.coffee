@@ -181,11 +181,6 @@ combineJs = (production = false) ->
     .pipe concat targets.js
     .pipe insert.append "jade.rethrow = #{rethrow.toLocaleString()};"
     .pipe gulp.dest dest
-    .pipe gulpif(production, notify
-      message: "Build complete"
-      title: "gulp"
-    )
-    .pipe gulpif(production, minify())
     .pipe browserSync.reload({stream:true})
 
 gulp.task "combine", combineJs
