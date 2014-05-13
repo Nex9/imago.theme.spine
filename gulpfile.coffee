@@ -143,7 +143,7 @@ generateCss = (production = false) ->
     .pipe plumber(
       errorHandler: reportError
     )
-    .pipe stylus({errors: true, set:["compress"]})
+    .pipe stylus({errors: true, use: ['nib'], set:["compress"]})
     .pipe prefix("last 1 version")
     .pipe concat targets.css
     .pipe gulp.dest dest
