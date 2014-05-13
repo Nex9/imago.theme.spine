@@ -185,7 +185,7 @@ combineJs = (production = false) ->
 
 gulp.task "combine", combineJs
 
-gulp.task "watch", ["server"], ->
+gulp.task "watch", ["prepare", "server"], ->
 
   watch
     glob: "**/*.styl"
@@ -240,7 +240,7 @@ gulp.task "build", ["js"], ->
   generateCss(production)
   combineJs(production)
 
-gulp.task "server", ["prepare"], ->
+gulp.task "server", ->
   browserSync.init ["#{src}/index.html"],
     server:
       baseDir: "#{dest}"
