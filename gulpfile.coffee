@@ -57,7 +57,6 @@ paths =
   jade: ["#{src}/**/*.jade"]
   libs: [
     "node_modules/jade/runtime.js"
-    "node_modules/node-uuid/uuid.js"
     "node_modules/commonjs-require-definition/require.js"
   ]
   modules: [
