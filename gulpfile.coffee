@@ -55,6 +55,7 @@ paths =
   ]
   js: ["#{src}/**/*.js"]
   jade: ["#{src}/**/*.jade"]
+  nexDev: ["node_modules/nex/lib/*.js"]
   libs: [
     "node_modules/jade/runtime.js"
     "node_modules/commonjs-require-definition/require.js"
@@ -208,11 +209,16 @@ gulp.task "watch", ["prepare", "browser-sync"], ->
     gulp.start('coffee')
 
   watch
+    glob: paths.nexDev
+  , ->
+    gulp.start('modules')
+
+  watch
     glob: paths.js
   , ->
     gulp.start('scripts')
 
-  files = [targets.scripts, targets.jade, targets.coffee]
+  files = [targets.scripts, targets.modules, targets.jade, targets.coffee]
   sources = ("#{dest}/#{file}" for file in files)
 
   watch
