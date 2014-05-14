@@ -25,7 +25,7 @@
         "connect-modrewrite": "^0.5.11",
         "base64-js": "0.0.6",
         "browser-sync": "^0.9",
-        "gulp": "^3.6.0",
+        "gulp": "^3.6",
         "gulp-autoprefixer": "0.0.6",
         "gulp-coffee": "^1.4.1",
         "gulp-coffeelint": "^0.3.1",
