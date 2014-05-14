@@ -25,7 +25,7 @@ rename          = require 'gulp-rename'
 insert          = require 'gulp-insert'
 gutil           = require 'gulp-util'
 size            = require 'gulp-size'
-watch           = require('gulp-watch')
+watch           = require 'gulp-watch'
 
 
 # Defaults
@@ -40,7 +40,7 @@ src = "./app"
 targets =
   css     : "application.css"
   js      : "application.js"
-  jsMin   : "application.min.js"
+  jsMin   : "application.js"
   jade    : "templates.js"
   lib     : "libs.js"
   scripts : "scripts.js"
@@ -158,11 +158,16 @@ gulp.task "libs", ->
 gulp.task "js", ["libs", "modules", "scripts", "coffee", "jade"], (next) ->
   next()
 
-minify = ->
+minifyJs = ->
   gulp.src "#{dest}/#{targets.js}"
     .pipe uglify()
     .pipe concat targets.jsMin
+    .pipe notify
+      message: "Build complete"
+      title: "gulp"
     .pipe gulp.dest dest
+
+gulp.task "minify", ["combineJs"], minifyJs
 
 combineJs = (production = false) ->
   # We need to rethrow jade errors to see them
@@ -181,21 +186,16 @@ combineJs = (production = false) ->
     .pipe concat targets.js
     .pipe insert.append "jade.rethrow = #{rethrow.toLocaleString()};"
     .pipe gulp.dest dest
-    .pipe browserSync.reload({stream:true})
+    .pipe browserSync.reload {stream:true}
 
 gulp.task "combine", combineJs
 
-gulp.task "watch", ["prepare", "server"], ->
+gulp.task "watch", ["prepare", "browser-sync"], ->
 
   watch
     glob: "**/*.styl"
   , ->
     gulp.start('stylus')
-
-  watch
-    glob: paths.jade
-  , ->
-    gulp.start('jade')
 
   watch
     glob: paths.jade
@@ -212,11 +212,6 @@ gulp.task "watch", ["prepare", "server"], ->
   , ->
     gulp.start('scripts')
 
-  # gulp.watch "**/*.styl", {interval: 1000}, ['stylus']
-  # gulp.watch paths.jade, {interval: 2000}, ['jade']
-  # gulp.watch paths.coffee, {interval: 2000}, ['coffee']
-  # gulp.watch paths.js, {interval: 2000}, ['scripts']
-
   files = [targets.scripts, targets.jade, targets.coffee]
   sources = ("#{dest}/#{file}" for file in files)
 
@@ -224,7 +219,6 @@ gulp.task "watch", ["prepare", "server"], ->
     glob: sources
   , ->
     gulp.start('combine')
-  # gulp.watch sources, {interval: 1000}, ['combine']
 
 reportError = (err) ->
   gutil.beep()
@@ -236,12 +230,11 @@ gulp.task "prepare", ["js"], ->
   combineJs()
 
 gulp.task "build", ["js"], ->
-  production = true
-  generateCss(production)
-  combineJs(production)
+  generateCss()
+  minifyJs()
 
-gulp.task "server", ->
-  browserSync.init ["#{src}/index.html"],
+gulp.task "browser-sync", ->
+  browserSync.init ["#{dest}/index.html"],
     server:
       baseDir: "#{dest}"
       middleware: [
