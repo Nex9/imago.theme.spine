@@ -30,8 +30,8 @@ watch           = require 'gulp-watch'
 
 # Defaults
 
-dest = "./public"
-src = "./app"
+dest = "public"
+src = "app"
 
 # END Defaults
 
