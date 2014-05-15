@@ -26,6 +26,8 @@ insert          = require 'gulp-insert'
 gutil           = require 'gulp-util'
 size            = require 'gulp-size'
 watch           = require 'gulp-watch'
+Notification    = require 'node-notifier'
+notifier        = new Notification()
 
 
 # Defaults
@@ -228,6 +230,9 @@ gulp.task "watch", ["prepare", "browser-sync"], ->
 
 reportError = (err) ->
   gutil.beep()
+  notifier.notify
+    title: "Error running Gulp"
+    message: err.message
   gutil.log err
   @emit 'end'
 
