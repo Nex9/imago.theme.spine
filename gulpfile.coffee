@@ -165,9 +165,6 @@ minifyJs = ->
   gulp.src "#{dest}/#{targets.js}"
     .pipe uglify()
     .pipe concat targets.jsMin
-    .pipe notify
-      message: "Build complete"
-      title: "gulp"
     .pipe gulp.dest dest
 
 gulp.task "minify", ["combineJs"], minifyJs
