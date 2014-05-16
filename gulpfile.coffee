@@ -11,7 +11,7 @@ gulpif          = require "gulp-if"
 imagemin        = require "gulp-imagemin"
 jade            = require "gulp-jade"
 minifyCSS       = require "gulp-minify-css"
-notify          = require "gulp-notify"
+# notify          = require "gulp-notify"
 plumber         = require "gulp-plumber"
 prefix          = require "gulp-autoprefixer"
 stylus          = require "gulp-stylus"
@@ -93,7 +93,7 @@ gulp.task "modules", ->
   files = (require.resolve(module) for module in paths.modules)
   gulp.src(files, base: __dirname)
     .pipe plumber(
-      errorHandler: notify.onError("Error: <%= error.message %>")
+      errorHandler: reportError
     )
     .pipe rename (path) ->
       path.extname = ""
@@ -109,9 +109,9 @@ gulp.task "modules", ->
 gulp.task "jade", ->
   gulp.src paths.jade
     .pipe plumber(
-      errorHandler: notify.onError("Error: <%= error.message %>")
+      errorHandler: reportError
     )
-    .pipe jade(client: true).on('error', notify.onError("Error: <%= error.message %>"))
+    .pipe jade(client: true).on('error', reportError)
     .pipe insert.prepend "module.exports = "
     .pipe rename extname: ""
     .pipe common()
@@ -121,7 +121,7 @@ gulp.task "jade", ->
 gulp.task "scripts", ->
   gulp.src paths.js
     .pipe plumber(
-      errorHandler: notify.onError("Error: <%= error.message %>")
+      errorHandler: reportError
     )
     .pipe rename extname: ""
     .pipe common()
@@ -131,9 +131,9 @@ gulp.task "scripts", ->
 gulp.task "coffee", ->
   gulp.src paths.coffee
     .pipe plumber(
-      errorHandler: notify.onError("Error: <%= error.message %>")
+      errorHandler: reportError
     )
-    .pipe coffee(bare: true).on('error', notify.onError("Error: <%= error.message %>"))
+    .pipe coffee(bare: true).on('error', reportError)
     .pipe coffeelint()
     .pipe rename extname: ""
     .pipe common()
@@ -143,7 +143,7 @@ gulp.task "coffee", ->
 generateCss = (production = false) ->
   gulp.src paths.stylus
     .pipe plumber(
-      errorHandler: notify.onError("Error: <%= error.message %>")
+      errorHandler: reportError
     )
     .pipe stylus({errors: true, use: ['nib'], set:["compress"]})
     .pipe prefix("last 1 version")
