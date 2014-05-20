@@ -1,18 +1,21 @@
+@import 'nib'
 .imagoimage
   position: relative
 
+  .imagox23
   .image
     position: absolute
     top: 0
     left: 0
     width: 100%
     height: 100%
-    opacity: 0.5
-    transition: opacity 0.1s ease-in-out
+    opacity: 0
+    transition: opacity 0.25s ease-in-out
     background-repeat: no-repeat
 
   &.loaded
     .image
+    .imagox23
       opacity: 1
     .spin
     .spin2
