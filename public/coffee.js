@@ -132,9 +132,10 @@ if ($.support.touch) {
 } else {
   $(function() {
     return $('body').bind('click', function(e) {
-      var target, _ref, _ref1, _ref2, _ref3, _ref4;
+      var a, target, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6;
       target = $(e.target);
-      if (!(target.attr('target') === '_blank' || ((_ref = target.attr('href')) != null ? _ref.match(/^mailto/) : void 0) || ((_ref1 = target.attr('href')) != null ? _ref1.match(/^tel/) : void 0) || ((_ref2 = target.attr('href')) != null ? _ref2.match(/^http/) : void 0) || ((_ref3 = target.attr('type')) != null ? _ref3.match(/checkbox/) : void 0) || ((_ref4 = target.attr('type')) != null ? _ref4.match(/checkbox|text/) : void 0) || target[0].nodeName.match(/LABEL/))) {
+      a = target.closest('a');
+      if (!(target.attr('target') === '_blank' || ((_ref = target.attr('href')) != null ? _ref.match(/^mailto/) : void 0) || ((_ref1 = target.attr('href')) != null ? _ref1.match('/api/') : void 0) || ((_ref2 = target.attr('href')) != null ? _ref2.match(/^tel/) : void 0) || ((_ref3 = target.attr('href')) != null ? _ref3.match(/^http/) : void 0) || ((_ref4 = target.attr('type')) != null ? _ref4.match(/checkbox/) : void 0) || ((_ref5 = target.attr('type')) != null ? _ref5.match(/checkbox|text/) : void 0) || target[0].nodeName.match(/LABEL/) || (!target[0].nodeName.match(/A/) && ((_ref6 = a.attr('href')) != null ? _ref6.match(/^http/) : void 0)))) {
         e.preventDefault();
       }
       return target.trigger('tap');

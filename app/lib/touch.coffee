@@ -49,12 +49,29 @@ $ ->
 if $.support.touch
   $('body').bind 'click', (e) ->
     target = $(e.target)
-    e.preventDefault() unless target.attr('target') is '_blank' or target.attr('href')?.match(/^mailto/) or target.attr('href')?.match(/^tel/) or target.attr('href')?.match(/^http/)
+    # let browser load a new link...
+    e.preventDefault() unless target.attr('target') is
+      '_blank' or target.attr('href')?.match(/^mailto/) or   # has Blank attribute
+      target.attr('href')?.match(/^tel/) or                  # is a tel link
+      target.attr('href')?.match(/^http/)                    # is an http link
 else
   $ ->
     $('body').bind 'click', (e) ->
-      target = $(e.target)
-      e.preventDefault() unless target.attr('target') is '_blank' or target.attr('href')?.match(/^mailto/) or target.attr('href')?.match(/^tel/) or target.attr('href')?.match(/^http/) or target.attr('type')?.match(/checkbox/) or target.attr('type')?.match(/checkbox|text/) or target[0].nodeName.match(/LABEL/)
+      target  = $(e.target)
+      a       = target.closest('a')
+
+      # let browser to load a new link ...
+      unless target.attr('target') is '_blank' or           # blank atribute
+        target.attr('href')?.match(/^mailto/) or            # mailto link
+        target.attr('href')?.match('/api/') or
+        target.attr('href')?.match(/^tel/) or               # tel link
+        target.attr('href')?.match(/^http/) or              # http link
+        target.attr('type')?.match(/checkbox/) or           # checkbox
+        target.attr('type')?.match(/checkbox|text/) or      # checbox or text
+        target[0].nodeName.match(/LABEL/) or                # label
+        # el is NOT an anchor and closest a has external link
+        (not target[0].nodeName.match(/A/) and a.attr('href')?.match(/^http/))
+          e.preventDefault()
       target.trigger('tap')
 
 types = ['swipe',
