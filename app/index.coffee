@@ -43,7 +43,6 @@ class App extends Spine.Controller
     @window.on 'mousewheel', _.debounce (=> @window.trigger 'mousewheelstop'),  200
     @window.on 'mousewheel', _.throttle (=> @window.trigger 'mousewheellimit'), 150
 
-    Spine.Route.bind 'change', @setBodyClass
     # Spine.Route.bind 'change', @setLanguage
 
     # clear body for app
@@ -54,6 +53,7 @@ class App extends Spine.Controller
     Setting.bind 'refresh', => @settings.resolve()
 
     @manager = new Spine.Manager
+    @manager.bind 'change', @setBodyClass
 
     $.when(
       @settings
