@@ -28,6 +28,7 @@ size            = require 'gulp-size'
 watch           = require 'gulp-watch'
 Notification    = require 'node-notifier'
 notifier        = new Notification()
+exec            = require('child_process').exec
 
 
 # Defaults
@@ -87,6 +88,7 @@ paths =
    "spine/lib/route"
    "spine/lib/manager"
    "spine/lib/list"
+   "underscore"
  ]
 
 gulp.task "modules", ->
@@ -240,6 +242,11 @@ gulp.task "prepare", ["js"], ->
 gulp.task "build", ["js"], ->
   generateCss()
   minifyJs()
+
+gulp.task "deploy", ["build"], ->
+  exec "deploy .", (error, stdout, stderr) ->
+    console.log "result: " + stdout
+    console.log "exec error: " + error  if error isnt null
 
 gulp.task "browser-sync", ->
   browserSync.init ["#{dest}/index.html"],
