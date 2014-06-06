@@ -1,7 +1,7 @@
 require('lib/setup')
 _ = require('underscore')
 
-Home           = require('controllers/home')
+# Home           = require('controllers/home')
 
 Asset          = Nex.Models.Asset
 Setting        = Nex.Models.Setting
@@ -44,6 +44,7 @@ class App extends Spine.Controller
     @window.on 'mousewheel', _.throttle (=> @window.trigger 'mousewheellimit'), 150
 
     # Spine.Route.bind 'change', @setLanguage
+    Spine.Route.bind 'change', @setBodyClass
 
     # clear body for app
     @el.empty()
@@ -53,7 +54,6 @@ class App extends Spine.Controller
     Setting.bind 'refresh', => @settings.resolve()
 
     @manager = new Spine.Manager
-    @manager.bind 'change', @setBodyClass
 
     $.when(
       @settings
@@ -106,9 +106,9 @@ class App extends Spine.Controller
     Nex.country = language.split('-')[1]
 
   setBodyClass: (Route, path) =>
-    path = "/#{Nex.language}" if path is '/'
-    document.body.className = (path.replace(/\//g, ' ')).trim?()
-    document.body.className += ' home' if document.body.className is 'de' or document.body.className is 'en'
+    path = '/home' if path is '/'
+    classes = "#{path} #{@manager?.getActive()?.className or ''}"
+    document.body.className = (classes.replace(/\//g, ' ')).trim?()
 
   onNavigate: (e) =>
     href = $(e.target).closest('a').attr('href')
@@ -116,10 +116,11 @@ class App extends Spine.Controller
 
   render: ->
 
-    @append @home = new Home
+    # @append @home = new Home
 
-    @manager.add
-      @home
+    @manager.add(
+      # @home
+    )
 
 
 
@@ -130,6 +131,12 @@ class App extends Spine.Controller
   goHome: =>
     @navigate '/'
 
+
+# find a faster better solution
+Spine.Manager.include
+  getActive: ->
+    for cont in @controllers
+      return cont if cont.isActive()
 
 
 module.exports = App

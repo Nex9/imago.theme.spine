@@ -76,6 +76,7 @@ paths =
    "nex/lib/image"
    "nex/lib/video"
    "nex/lib/slider"
+   "nex/lib/tabs"
    "nex/lib/html"
    "json2ify"
    "es5-shimify"
