@@ -1,0 +1,218 @@
+// =calc()
+//   if current-property
+//     add-property(current-property[0], s('-webkit-calc(%s)', arguments))
+//     add-property(current-property[0], s('-moz-calc(%s)', arguments))
+//     add-property(current-property[0], s('-ms-calc(%s)', arguments))
+//     add-property(current-property[0], s('-o-calc(%s)', arguments))
+//     s('calc(%s)', arguments)
+//   else
+//     error('something() must be used within a property')
+
+=vendor($prop, $args)
+  -webkit-#{$prop}: $args
+  -moz-#{$prop}: $args
+  -ms-#{$prop}: $args
+  -o-#{$prop}: $args
+  #{$prop}: $args
+
+=mp()
+  padding: arguments
+  margin: arguments
+
+=border-radius()
+  -moz-border-radius: arguments
+  -webkit-border-radius: arguments
+  border-radius: arguments
+
+/* Vertical Background Gradient */
+=vbg-gradient($fc : #FFF, $tc : #FFF)
+  background: $fc
+  background: -webkit-gradient(linear, left top, left bottom, from($fc), to($tc)) no-repeat
+  background: -moz-linear-gradient(top, $fc, $tc) no-repeat
+  background: -ms-linear-gradient(top, $fc, $tc) no-repeat
+  background: -o-linear-gradient(top, $fc, $tc) no-repeat
+  background: linear-gradient(top, $fc, $tc) no-repeat
+
+/* Horizontal Background Gradient */
+=hbg-gradient($fc : #FFF, $tc : #FFF)
+  background: $fc
+  background: -webkit-gradient(linear, left top, right top, from($fc), to($tc)) no-repeat
+  background: -moz-linear-gradient(left, $fc, $tc) no-repeat
+  background: -ms-linear-gradient(left, $fc, $tc) no-repeat
+  background: -o-linear-gradient(left, $fc, $tc) no-repeat
+  background: linear-gradient(left, $fc, $tc) no-repeat
+
+
+=rbg-gradient($fc : #FFF, $tc : #FFF, $start : 0%, $end : 100%, $h : center, $v : center)
+  background: $fc
+  background-image: -webkit-radial-gradient($h $v, circle, $fc $start, $tc $end)
+  background-image: -moz-radial-gradient($h $v, circle, $fc $start, $tc $end)
+  background-image: -ms-radial-gradient($h $v, circle, $fc $start, $tc $end)
+  background-image: -o-radial-gradient($h $v, circle, $fc $start, $tc $end)
+  background-image: radial-gradient($h $v, circle, $fc $start, $tc $end)
+
+=bg-gradient($o : center center, $type : linear, $fc : #FFF, $tc : #FFF)
+  background: $fc
+  background: -webkit-radial-gradient($o, $type, $fc, $tc)
+  background: -moz-radial-gradient($o, $type, $fc, $tc)
+  background: -ms-radial-gradient($o, $type, $fc, $tc)
+  background: -o-radial-gradient($o, $type, $fc, $tc)
+  background: radial-gradient($o, $type, $fc, $tc)
+
+=box-shadow()
+  -moz-box-shadow: arguments
+  -webkit-box-shadow: arguments
+  box-shadow: arguments
+
+=inset-box-shadow()
+  -moz-box-shadow: inset arguments
+  -webkit-box-shadow: inset arguments
+  box-shadow: inset arguments
+
+
+=hbox()
+  display: -webkit-box      // OLD - iOS 6-, Safari 3.1-6
+  display: -moz-box         // OLD - Firefox 19- (buggy but mostly works)
+  display: -ms-box
+  display: -o-box
+  display: box
+  box-orient: horizontal
+  box-align: stretch
+  box-pack: start
+
+=vbox()
+  display: -webkit-box      // OLD - iOS 6-, Safari 3.1-6
+  display: -moz-box         // OLD - Firefox 19- (buggy but mostly works)
+  display: -ms-box
+  display: -o-box
+  display: box
+  box-orient: vertical
+  box-align: stretch
+
+=cbox()
+  display: -webkit-box      // OLD - iOS 6-, Safari 3.1-6
+  display: -moz-box         // OLD - Firefox 19- (buggy but mostly works)
+  display: -ms-box
+  display: -o-box
+  display: box
+  box-orient: vertical
+  box-align: center
+  box-pack: center
+
+
+
+=transition()
+  -webkit-transition: arguments
+  -moz-transition: arguments
+  -ms-transition: arguments
+  -o-transition: arguments
+  transition: arguments
+
+=transition-delay($t : 1s)
+  -webkit-transition-delay: $t
+  -moz-transition-delay: $t
+  -ms-transition-delay: $t
+  -o-transition-delay: $t
+  transition-delay: $t
+
+=transition-property()
+  -webkit-transition-property: arguments
+  -moz-transition-property: arguments
+  -ms-transition-property: arguments
+  -o-transition-property: arguments
+  transition-property: arguments
+
+=backface-visibility($d : hidden)
+  -webkit-backface-visibility: $d
+  -moz-backface-visibility: $d
+  -ms-backface-visibility: $d
+  -o-backface-visibility: $d
+  backface-visibility: $d
+
+
+=ellipsis()
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
+
+=inset-line($opacity : 0.4, $size : 1px)
+  +inset-box-shadow(0, $size, 0, rgba(255, 255, 255, $opacity))
+
+=outset-line($opacity : 0.4, $size : 1px)
+  +box-shadow(0, $size, 0, rgba(255, 255, 255, $opacity))
+
+=box-pack($type : center)
+  -webkit-box-pack: $type
+  -moz-box-pack: $type
+  box-pack: $type
+
+=transform()
+  -webkit-transform: arguments
+  -moz-transform: arguments
+  -ms-transform: arguments
+  -o-transform: arguments
+  transform: arguments
+
+=transform-origin($x : left, $y : top)
+  -webkit-transform-origin: $x $y
+  -moz-transform-origin: $x $y
+  -ms-transform-origin: $x $y
+  -o-transform-origin: $x $y
+  transform-origin: $x $y
+
+=transform-style($d : preserve-3d)
+  -webkit-transform-style: $d
+  -moz-transform-style: $d
+  -ms-transform-style: $d
+  -o-transform-style: $d
+  transform-style: $d
+
+=hacel()
+  +transform(translate3d(0,0,0))
+
+=perspective($v : 800)
+  -webkit-perspective: $v
+  -moz-perspective: $v
+  -ms-perspective: $v
+  -o-perspective: $v
+  perspective: $v
+
+=perspective-origin( $h : 50%, $v : 50% )
+  -webkit-perspective-origin: $h $v
+  -moz-perspective-origin: $h $v
+  -ms-perspective-origin: $h $v
+  -o-perspective-origin: $h $v
+  perspective-origin: $h $v
+
+=pos($p : absolute, $t : 0px, $r : 0px, $b : 0px, $l : 0px)
+  position: $p
+  top: $t
+  right: $r
+  bottom: $b
+  left: $l
+
+=font-smoothing($a : antialiased)
+  -webkit-font-smoothing: $a
+  -moz-osx-font-smoothing: grayscale
+
+=hide-select()
+  -webkit-appearance: none
+  -moz-appearance: none
+  -ms-appearance: none
+  -o-appearance: none
+  appearance: none
+  // opacity: 0
+
+=appearance( $q : none )
+  -webkit-appearance: $q
+  -moz-appearance: $q
+  -ms-appearance: $q
+  -o-appearance: $q
+  appearance: $q
+
+=mask-image($url)
+  -webkit-mask-image: url($url)
+  -moz-mask-image: url($url)
+  -ms-mask-image: url($url)
+  -o-mask-image: url($url)
+  mask-image: url($url)

@@ -1,10 +1,10 @@
-@import './mixin'
-@import './reset'
-@import './imago'
-@import './slider'
-@import './buttons'
-@import './fields'
-@import './nojs'
+@import 'mixin'
+@import 'reset'
+@import 'imago'
+@import 'slider'
+@import 'buttons'
+@import 'fields'
+@import 'nojs'
 
 
 
@@ -22,7 +22,7 @@
   color: lighten(black, 35%)
 
 
-html
+html,
 body
   margin: 0
   padding: 0
@@ -32,12 +32,12 @@ body
   font-size: 13px
 
 body
-  @extends .fontstyle
+  @extend .fontstyle
   overflow-y: auto
   overflow-x: hidden
 
 a
-  @extends .fontstyle
+  @extend .fontstyle
   text-decoration: none
 
 img
@@ -48,13 +48,13 @@ img
 strong
   font-weight: bold
 
-h1
-h2
-h3
-h4
-h5
+h1,
+h2,
+h3,
+h4,
+h5,
 h6
-  @extends .bold
+  @extend .bold
   color: #444
   font-weight: 200
   margin: 10px 0
@@ -73,19 +73,19 @@ h4
   font-size: 13px
   color: lighten(black, 60%)
 
-p
+p,
 li
-  @extends .fontstyle
+  @extend .fontstyle
   font-smoothing: antialiased
-  line-height: 17px;
+  line-height: 17px
   color: lighten(black, 50%)
   font-size: 15px
 
 
 ul.list
-  list-style-type: none;
-  padding: 0px;
-  margin: 10px 0px;
+  list-style-type: none
+  padding: 0px
+  margin: 10px 0px
   list-style-position: inside
   li
     list-style-type: none

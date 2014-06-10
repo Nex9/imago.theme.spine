@@ -14,7 +14,8 @@ minifyCSS       = require "gulp-minify-css"
 # notify          = require "gulp-notify"
 plumber         = require "gulp-plumber"
 prefix          = require "gulp-autoprefixer"
-stylus          = require "gulp-stylus"
+# stylus          = require "gulp-stylus"
+sass            = require('gulp-ruby-sass');
 uglify          = require "gulp-uglify"
 # runSequence     = require "run-sequence"
 # uncss           = require "gulp-uncss"
@@ -52,6 +53,7 @@ targets =
 
 paths =
   stylus: ["css/index.styl"]
+  sass: ["css/index.sass"]
   coffee: [
     "#{src}/**/*.coffee"
     "#{src}/**/*.litcoffee"
@@ -143,18 +145,41 @@ gulp.task "coffee", ->
     .pipe concat targets.coffee
     .pipe gulp.dest dest
 
-generateCss = (production = false) ->
-  gulp.src paths.stylus
+# generateCss = (production = false) ->
+#   gulp.src paths.stylus
+#     .pipe plumber(
+#       errorHandler: reportError
+#     )
+#     .pipe stylus({errors: true, use: ['nib'], set:["compress"]})
+#     .pipe prefix("last 2 versions")
+#     .pipe concat targets.css
+#     .pipe gulp.dest dest
+#     .pipe browserSync.reload({stream:true})
+
+# gulp.task "stylus", generateCss
+
+generateSass = (production = false) ->
+  gulp.src paths.sass
     .pipe plumber(
       errorHandler: reportError
     )
-    .pipe stylus({errors: true, use: ['nib'], set:["compress"]})
-    .pipe prefix("last 1 version")
+    .pipe sass {sourcemap: true}
+    .pipe prefix("last 2 versions")
     .pipe concat targets.css
     .pipe gulp.dest dest
     .pipe browserSync.reload({stream:true})
 
-gulp.task "stylus", generateCss
+generateSassWMaps = (production = false) ->
+  gulp.src paths.sass
+    .pipe plumber(
+      errorHandler: reportError
+    )
+    .pipe sassRuby {sourcemap: false, style: 'compressed'}
+    .pipe prefix("last 2 versions")
+    .pipe concat targets.css
+    .pipe gulp.dest dest
+
+gulp.task "sass", generateSass
 
 gulp.task "libs", ->
   gulp.src paths.libs
@@ -196,9 +221,9 @@ gulp.task "combine", combineJs
 gulp.task "watch", ["prepare", "browser-sync"], ->
 
   watch
-    glob: "**/*.styl"
+    glob: "**/*.sass"
   , ->
-    gulp.start('stylus')
+    gulp.start('sass')
 
   watch
     glob: paths.jade
@@ -237,11 +262,11 @@ reportError = (err) ->
   @emit 'end'
 
 gulp.task "prepare", ["js"], ->
-  generateCss()
+  generateSass()
   combineJs()
 
 gulp.task "build", ["js"], ->
-  generateCss()
+  generateSassWMaps()
   minifyJs()
 
 gulp.task "deploy", ["build"], ->
