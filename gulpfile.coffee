@@ -91,7 +91,6 @@ paths =
    "spine/lib/route"
    "spine/lib/manager"
    "spine/lib/list"
-   "underscore"
  ]
 
 gulp.task "modules", ->
