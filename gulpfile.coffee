@@ -174,7 +174,7 @@ generateSassWMaps = (production = false) ->
     .pipe plumber(
       errorHandler: reportError
     )
-    .pipe sassRuby {sourcemap: false, style: 'compressed'}
+    .pipe sass {sourcemap: false, style: 'compressed'}
     .pipe prefix("last 2 versions")
     .pipe concat targets.css
     .pipe gulp.dest dest
