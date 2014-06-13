@@ -217,7 +217,7 @@ combineJs = (production = false) ->
 
 gulp.task "combine", combineJs
 
-gulp.task "watch", ["browser-sync"], ->
+gulp.task "watch", ["libs", "browser-sync"], ->
 
   watch
     glob: "**/*.sass"
