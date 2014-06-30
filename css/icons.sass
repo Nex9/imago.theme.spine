@@ -1,31 +1,23 @@
-borderColor   = #eee
-iconMuted     = #eee
+$borderColor : #eee
+$iconMuted   : #eee
+
+@font-face
+  font-family: "FontAwesome"
+  src: url("i/fonts/fontawesome-webfont.eot?#iefix")
+  src: url("i/fonts/fontawesome-webfont.eot?#iefix") format("eot"),url("i/fonts/fontawesome-webfont.woff") format("woff"),url("i/fonts/fontawesome-webfont.ttf") format("truetype"),url("i/fonts/fontawesome-webfont.svg#icons-roman") format("svg")
 
 
-border-radius(radius)
-  -webkit-border-radius: radius
-  -moz-border-radius: radius
-  border-radius: radius
+@font-face
+  font-family: "Icons"
+  src: url("i/fonts/icons-roman-webfont.eot?#iefix")
+  src: url("i/fonts/icons-roman-webfont.eot?#iefix") format("eot"),url("i/fonts/icons-roman-webfont.woff") format("woff"),url("i/fonts/icons-roman-webfont.ttf") format("truetype"),url("i/fonts/icons-roman-webfont.svg#icons-roman") format("svg")
 
-
-
-@font-face {
-  font-family:"FontAwesome";
-  src:url("i/fonts/fontawesome-webfont.eot?#iefix")
-  src:url("i/fonts/fontawesome-webfont.eot?#iefix") format("eot"),url("i/fonts/fontawesome-webfont.woff") format("woff"),url("i/fonts/fontawesome-webfont.ttf") format("truetype"),url("i/fonts/fontawesome-webfont.svg#icons-roman") format("svg")
-}
-
-@font-face {
-  font-family:"Icons";
-  src:url("i/fonts/icons-roman-webfont.eot?#iefix")
-  src:url("i/fonts/icons-roman-webfont.eot?#iefix") format("eot"),url("i/fonts/icons-roman-webfont.woff") format("woff"),url("i/fonts/icons-roman-webfont.ttf") format("truetype"),url("i/fonts/icons-roman-webfont.svg#icons-roman") format("svg")
-}
 
 /*  Font Awesome styles
  *  ------------------------------------------------------- */
 
 
-[class^="icon-"]
+[class^="icon-"],
 [class*=" icon-"]
   font-size: 14px
   font-family: "FontAwesome"
@@ -55,7 +47,7 @@ border-radius(radius)
 
 /* makes sure icons active on rollover in links */
 a
-  [class^="icon-"]
+  [class^="icon-"],
   [class*=" icon-"]
     display: inline-block
 
@@ -66,15 +58,15 @@ a
 
 
 .icon-muted
-  color: iconMuted
+  color: $iconMuted
 
 // Icon Borders
 // -------------------------
 
 .icon-border
-  border: solid 1px borderColor
+  border: solid 1px $borderColor
   padding: .2em .25em .15em
-  border-radius(3px)
+  border-radius: 3px
 
 // Icon Sizes
 // -------------------------
@@ -83,19 +75,19 @@ a
   font-size: 2em
   &.icon-border
     border-width: 2px
-    border-radius(4px)
+    border-radius: 4px
 
 .icon-3x
   font-size: 3em
   &.icon-border
     border-width: 3px
-    border-radius(5px)
+    border-radius: 5px
 
 .icon-4x
   font-size: 4em
   &.icon-border
     border-width: 4px
-    border-radius(6px)
+    border-radius: 6px
 
 // Floats
 // -------------------------
@@ -187,14 +179,14 @@ a
 .icon-zoom-out:before
   content: "\f010"
 
-.icon-power-off:before
+.icon-power-off:before,
 .icon-off:before
   content: "\f011"
 
 .icon-signal:before
   content: "\f012"
 
-.icon-gear:before
+.icon-gear:before,
 .icon-cog:before
   content: "\f013"
 
@@ -228,7 +220,7 @@ a
 .icon-play-circle:before
   content: "\f01d"
 
-.icon-rotate-right:before
+.icon-rotate-right:before,
 .icon-repeat:before
   content: "\f01e"
 
@@ -424,7 +416,7 @@ a
 .icon-arrow-down:before
   content: "\f063"
 
-.icon-mail-forward:before
+.icon-mail-forward:before,
 .icon-share-alt:before
   content: "\f064"
 
@@ -518,7 +510,7 @@ a
 .icon-key:before
   content: "\f084"
 
-.icon-gears:before
+.icon-gears:before,
 .icon-cogs:before
   content: "\f085"
 
@@ -567,7 +559,7 @@ a
 .icon-phone:before
   content: "\f095"
 
-.icon-unchecked:before
+.icon-unchecked:before,
 .icon-check-empty:before
   content: "\f096"
 
@@ -667,7 +659,7 @@ a
 .icon-copy:before
   content: "\f0c5"
 
-.icon-paperclip:before
+.icon-paperclip:before,
 .icon-paper-clip:before
   content: "\f0c6"
 
@@ -746,7 +738,7 @@ a
 .icon-linkedin:before
   content: "\f0e1"
 
-.icon-rotate-left:before
+.icon-rotate-left:before,
 .icon-undo:before
   content: "\f0e2"
 
@@ -882,7 +874,7 @@ a
 .icon-circle:before
   content: "\f111"
 
-.icon-mail-reply:before
+.icon-mail-reply:before,
 .icon-reply:before
   content: "\f112"
 
@@ -934,7 +926,7 @@ a
 .icon-mail-reply-all:before
   content: "\f122"
 
-.icon-star-half-full:before
+.icon-star-half-full:before,
 .icon-star-half-empty:before
   content: "\f123"
 
@@ -1070,34 +1062,34 @@ a
 .icon-expand:before
   content: "\f152"
 
-.icon-euro:before
+.icon-euro:before,
 .icon-eur:before
   content: "\f153"
 
 .icon-gbp:before
   content: "\f154"
 
-.icon-dollar:before
+.icon-dollar:before,
 .icon-usd:before
   content: "\f155"
 
-.icon-rupee:before
+.icon-rupee:before,
 .icon-inr:before
   content: "\f156"
 
-.icon-yen:before
+.icon-yen:before,
 .icon-jpy:before
   content: "\f157"
 
-.icon-renminbi:before
+.icon-renminbi:before,
 .icon-cny:before
   content: "\f158"
 
-.icon-won:before
+.icon-won:before,
 .icon-krw:before
   content: "\f159"
 
-.icon-bitcoin:before
+.icon-bitcoin:before,
 .icon-btc:before
   content: "\f15a"
 
@@ -1243,7 +1235,7 @@ a
 
 // nex icons
 
-[class^="icon-nex"]
+[class^="icon-nex"],
 [class*=" icon-nex"]
   font-family: "Icons"
 
