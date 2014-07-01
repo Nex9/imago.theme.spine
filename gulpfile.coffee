@@ -191,10 +191,9 @@ gulp.task "js", ["libs", "modules", "scripts", "coffee", "jade"], (next) ->
 minifyJs = ->
   gulp.src "#{dest}/#{targets.js}"
     .pipe uglify()
-    .pipe concat targets.jsMin
     .pipe gulp.dest dest
 
-gulp.task "minify", ["combineJs"], minifyJs
+gulp.task "minify", ["combine"], minifyJs
 
 combineJs = (production = false) ->
   # We need to rethrow jade errors to see them
@@ -215,7 +214,7 @@ combineJs = (production = false) ->
     .pipe gulp.dest dest
     .pipe browserSync.reload {stream:true}
 
-gulp.task "combine", combineJs
+gulp.task "combine", ["js"], combineJs
 
 gulp.task "watch", ["libs", "browser-sync"], ->
 
@@ -260,13 +259,10 @@ reportError = (err) ->
   gutil.log err
   @emit 'end'
 
-gulp.task "prepare", ["js"], ->
-  generateSass()
-  combineJs()
 
-gulp.task "build", ["js"], ->
+gulp.task "build", ["minify"], ->
   generateSassWMaps()
-  minifyJs()
+  # minifyJs()
 
 gulp.task "deploy", ["build"], ->
   exec "deploy .", (error, stdout, stderr) ->
