@@ -26,7 +26,7 @@
     "gulp-coffeelint": "^0.3.1",
     "gulp-commonjs": "^0.1.0",
     "gulp-concat": "^2.2.0",
-    "gulp-if": "0.0.5",
+    "gulp-if": "^1.2.0",
     "gulp-imagemin": "^0.1.5",
     "gulp-inject": "^0.4.1",
     "gulp-insert": "^0.3.0",
