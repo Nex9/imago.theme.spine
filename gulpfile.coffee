@@ -14,7 +14,7 @@ minifyCSS       = require "gulp-minify-css"
 # notify          = require "gulp-notify"
 plumber         = require "gulp-plumber"
 prefix          = require "gulp-autoprefixer"
-# stylus          = require "gulp-stylus"
+stylus          = require "gulp-stylus"
 sass            = require('gulp-ruby-sass');
 uglify          = require "gulp-uglify"
 # runSequence     = require "run-sequence"
@@ -144,39 +144,39 @@ gulp.task "coffee", ->
     .pipe concat targets.coffee
     .pipe gulp.dest dest
 
-# generateCss = (production = false) ->
-#   gulp.src paths.stylus
-#     .pipe plumber(
-#       errorHandler: reportError
-#     )
-#     .pipe stylus({errors: true, use: ['nib'], set:["compress"]})
-#     .pipe prefix("last 2 versions")
-#     .pipe concat targets.css
-#     .pipe gulp.dest dest
-#     .pipe browserSync.reload({stream:true})
+generateStylus = (production = false) ->
+  gulp.src paths.stylus
+    .pipe plumber(
+      errorHandler: reportError
+    )
+    .pipe stylus({errors: true, use: ['nib'], set:["compress"]})
+    .pipe prefix("last 2 versions")
+    .pipe concat targets.css
+    .pipe gulp.dest dest
+    .pipe browserSync.reload({stream:true})
 
-# gulp.task "stylus", generateCss
+gulp.task "stylus", generateStylus
 
 generateSass = (production = false) ->
   gulp.src paths.sass
     .pipe plumber(
       errorHandler: reportError
     )
-    .pipe sass {sourcemap: true}
+    .pipe sass()
     .pipe prefix("last 2 versions")
     .pipe concat targets.css
     .pipe gulp.dest dest
     .pipe browserSync.reload({stream:true})
 
-generateSassWMaps = (production = false) ->
-  gulp.src paths.sass
-    .pipe plumber(
-      errorHandler: reportError
-    )
-    .pipe sass {sourcemap: false, style: 'compressed'}
-    .pipe prefix("last 2 versions")
-    .pipe concat targets.css
-    .pipe gulp.dest dest
+# generateSassWMaps = (production = false) ->
+#   gulp.src paths.sass
+#     .pipe plumber(
+#       errorHandler: reportError
+#     )
+#     .pipe sass {sourcemap: false, style: 'compressed'}
+#     .pipe prefix("last 2 versions")
+#     .pipe concat targets.css
+#     .pipe gulp.dest dest
 
 gulp.task "sass", generateSass
 
@@ -216,30 +216,35 @@ combineJs = (production = false) ->
 
 gulp.task "combine", ["js"], combineJs
 
-gulp.task "watch", ["libs", "browser-sync"], ->
+gulp.task "watch", ["sass", "stylus", "combine", "browser-sync"], ->
 
   watch
-    glob: "**/*.sass"
+    glob: "**/*.sass", emitOnGlob: false
   , ->
     gulp.start('sass')
 
   watch
-    glob: paths.jade
+    glob: "**/*.styl", emitOnGlob: false
+  , ->
+    gulp.start('stylus')
+
+  watch
+    glob: paths.jade, emitOnGlob: false
   , ->
     gulp.start('jade')
 
   watch
-    glob: paths.coffee
+    glob: paths.coffee, emitOnGlob: false
   , ->
     gulp.start('coffee')
 
   watch
-    glob: paths.nexDev
+    glob: paths.nexDev, emitOnGlob: false
   , ->
     gulp.start('modules')
 
   watch
-    glob: paths.js
+    glob: paths.js, emitOnGlob: false
   , ->
     gulp.start('scripts')
 
@@ -247,7 +252,7 @@ gulp.task "watch", ["libs", "browser-sync"], ->
   sources = ("#{dest}/#{file}" for file in files)
 
   watch
-    glob: sources
+    glob: sources, emitOnGlob: false
   , ->
     gulp.start('combine')
 
@@ -261,7 +266,8 @@ reportError = (err) ->
 
 
 gulp.task "build", ["minify"], ->
-  generateSassWMaps()
+  generateSass()
+  generateStylus()
   # minifyJs()
 
 gulp.task "deploy", ["build"], ->
