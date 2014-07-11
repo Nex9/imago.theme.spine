@@ -2,7 +2,6 @@
     "name": "app",
     "version": "0.0.1",
     "dependencies": {
-        "browser-sync": "*",
         "coffee-script": "*",
         "commonjs-require-definition": "*",
         "es5-shimify": "*",
@@ -18,7 +17,7 @@
     },
     "devDependencies": {
         "base64-js": "*",
-        "browser-sync": "*",
+        "browser-sync": "0.9.1",
         "connect-modrewrite": "*",
         "gulp": "*",
         "gulp-autoprefixer": "*",

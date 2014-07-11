@@ -1,24 +1,24 @@
-gulp            = require "gulp"
-browserSync     = require "browser-sync"
+gulp            = require 'gulp'
+browserSync     = require 'browser-sync'
 
-coffee          = require "gulp-coffee"
-coffeelint      = require "gulp-coffeelint"
+coffee          = require 'gulp-coffee'
+coffeelint      = require 'gulp-coffeelint'
 
-concat          = require "gulp-concat"
+concat          = require 'gulp-concat'
 
-gulpif          = require "gulp-if"
+gulpif          = require 'gulp-if'
 
-imagemin        = require "gulp-imagemin"
-jade            = require "gulp-jade"
-minifyCSS       = require "gulp-minify-css"
-# notify          = require "gulp-notify"
-plumber         = require "gulp-plumber"
-prefix          = require "gulp-autoprefixer"
-stylus          = require "gulp-stylus"
-sass            = require('gulp-ruby-sass');
-uglify          = require "gulp-uglify"
-# runSequence     = require "run-sequence"
-# uncss           = require "gulp-uncss"
+imagemin        = require 'gulp-imagemin'
+jade            = require 'gulp-jade'
+minifyCSS       = require 'gulp-minify-css'
+# notify          = require 'gulp-notify'
+plumber         = require 'gulp-plumber'
+prefix          = require 'gulp-autoprefixer'
+stylus          = require 'gulp-stylus'
+sass            = require 'gulp-ruby-sass'
+uglify          = require 'gulp-uglify'
+# runSequence     = require 'run-sequence'
+# uncss           = require 'gulp-uncss'
 modRewrite      = require 'connect-modrewrite'
 
 common          = require 'gulp-commonjs'
@@ -34,66 +34,66 @@ exec            = require('child_process').exec
 
 # Defaults
 
-dest = "public"
-src = "app"
+dest = 'public'
+src = 'app'
 
 # END Defaults
 
 # Another solution
 
 targets =
-  css     : "application.css"
-  js      : "application.js"
-  jsMin   : "application.js"
-  jade    : "templates.js"
-  lib     : "libs.js"
-  scripts : "scripts.js"
-  coffee  : "coffee.js"
-  modules : "modules.js"
+  css     : 'application.css'
+  js      : 'application.js'
+  jsMin   : 'application.js'
+  jade    : 'templates.js'
+  lib     : 'libs.js'
+  scripts : 'scripts.js'
+  coffee  : 'coffee.js'
+  modules : 'modules.js'
 
 paths =
-  stylus: ["css/index.styl"]
-  sass: ["css/index.sass"]
+  stylus: ['css/index.styl']
+  sass: ['css/index.sass']
   coffee: [
     "#{src}/**/*.coffee"
     "#{src}/**/*.litcoffee"
   ]
   js: ["#{src}/**/*.js"]
   jade: ["#{src}/**/*.jade"]
-  nexDev: ["node_modules/nex/lib/*.js"]
+  nexDev: ['node_modules/nex/lib/*.js']
   libs: [
-    "node_modules/jade/runtime.js"
-    "node_modules/commonjs-require-definition/require.js"
+    'node_modules/jade/runtime.js'
+    'node_modules/commonjs-require-definition/require.js'
   ]
   modules: [
-   "nex/lib/nex"
-   "nex/lib/utils"
-   "nex/lib/models"
-   "nex/lib/panel"
-   "nex/lib/widgets"
-   "nex/lib/page"
-   "nex/lib/contact"
-   "nex/lib/search"
-   "nex/lib/jquery.viewport"
-   "nex/lib/image"
-   "nex/lib/video"
-   "nex/lib/slider"
-   "nex/lib/tabs"
-   "nex/lib/html"
-   "json2ify"
-   "es5-shimify"
-   "underscore"
-   "jqueryify"
-   "spine/lib/spine"
-   "spine/lib/local"
-   "spine/lib/relation"
-   "spine/lib/ajax"
-   "spine/lib/route"
-   "spine/lib/manager"
-   "spine/lib/list"
+   'nex/lib/nex'
+   'nex/lib/utils'
+   'nex/lib/models'
+   'nex/lib/panel'
+   'nex/lib/widgets'
+   'nex/lib/page'
+   'nex/lib/contact'
+   'nex/lib/search'
+   'nex/lib/jquery.viewport'
+   'nex/lib/image'
+   'nex/lib/video'
+   'nex/lib/slider'
+   'nex/lib/tabs'
+   'nex/lib/html'
+   'json2ify'
+   'es5-shimify'
+   'underscore'
+   'jqueryify'
+   'spine/lib/spine'
+   'spine/lib/local'
+   'spine/lib/relation'
+   'spine/lib/ajax'
+   'spine/lib/route'
+   'spine/lib/manager'
+   'spine/lib/list'
  ]
 
-gulp.task "modules", ->
+gulp.task 'modules', ->
   files = (require.resolve(module) for module in paths.modules)
   gulp.src(files, base: __dirname)
     .pipe plumber(
@@ -110,7 +110,7 @@ gulp.task "modules", ->
     .pipe concat targets.modules
     .pipe gulp.dest dest
 
-gulp.task "jade", ->
+gulp.task 'jade', ->
   gulp.src paths.jade
     .pipe plumber(
       errorHandler: reportError
@@ -122,7 +122,7 @@ gulp.task "jade", ->
     .pipe concat targets.jade
     .pipe gulp.dest dest
 
-gulp.task "scripts", ->
+gulp.task 'scripts', ->
   gulp.src paths.js
     .pipe plumber(
       errorHandler: reportError
@@ -132,7 +132,7 @@ gulp.task "scripts", ->
     .pipe concat targets.scripts
     .pipe gulp.dest dest
 
-gulp.task "coffee", ->
+gulp.task 'coffee', ->
   gulp.src paths.coffee
     .pipe plumber(
       errorHandler: reportError
@@ -149,13 +149,13 @@ generateStylus = (production = false) ->
     .pipe plumber(
       errorHandler: reportError
     )
-    .pipe stylus({errors: true, use: ['nib'], set:["compress"]})
-    .pipe prefix("last 2 versions")
+    .pipe stylus({errors: true, use: ['nib'], set:['compress']})
+    .pipe prefix('last 2 versions')
     .pipe concat targets.css
     .pipe gulp.dest dest
     .pipe browserSync.reload({stream:true})
 
-gulp.task "stylus", generateStylus
+gulp.task 'stylus', generateStylus
 
 generateSass = (production = false) ->
   gulp.src paths.sass
@@ -163,7 +163,7 @@ generateSass = (production = false) ->
       errorHandler: reportError
     )
     .pipe sass()
-    .pipe prefix("last 2 versions")
+    .pipe prefix('last 2 versions')
     .pipe concat targets.css
     .pipe gulp.dest dest
     .pipe browserSync.reload({stream:true})
@@ -178,14 +178,14 @@ generateSass = (production = false) ->
 #     .pipe concat targets.css
 #     .pipe gulp.dest dest
 
-gulp.task "sass", generateSass
+gulp.task 'sass', generateSass
 
-gulp.task "libs", ->
+gulp.task 'libs', ->
   gulp.src paths.libs
     .pipe concat targets.lib
     .pipe gulp.dest dest
 
-gulp.task "js", ["libs", "modules", "scripts", "coffee", "jade"], (next) ->
+gulp.task 'js', ['libs', 'modules', 'scripts', 'coffee', 'jade'], (next) ->
   next()
 
 minifyJs = ->
@@ -193,7 +193,7 @@ minifyJs = ->
     .pipe uglify()
     .pipe gulp.dest dest
 
-gulp.task "minify", ["combine"], minifyJs
+gulp.task 'minify', ['combine'], minifyJs
 
 combineJs = (production = false) ->
   # We need to rethrow jade errors to see them
@@ -214,17 +214,17 @@ combineJs = (production = false) ->
     .pipe gulp.dest dest
     .pipe browserSync.reload {stream:true}
 
-gulp.task "combine", ["js"], combineJs
+gulp.task 'combine', ['js'], combineJs
 
-gulp.task "watch", ["sass", "stylus", "combine", "browser-sync"], ->
+gulp.task 'watch', ['sass', 'stylus', 'combine', 'browser-sync'], ->
 
   watch
-    glob: "**/*.sass", emitOnGlob: false
+    glob: '**/*.sass', emitOnGlob: false
   , ->
     gulp.start('sass')
 
   watch
-    glob: "**/*.styl", emitOnGlob: false
+    glob: '**/*.styl', emitOnGlob: false
   , ->
     gulp.start('stylus')
 
@@ -259,23 +259,22 @@ gulp.task "watch", ["sass", "stylus", "combine", "browser-sync"], ->
 reportError = (err) ->
   gutil.beep()
   notifier.notify
-    title: "Error running Gulp"
+    title: 'Error running Gulp'
     message: err.message
   gutil.log err
   @emit 'end'
 
-
-gulp.task "build", ["minify"], ->
+gulp.task 'build', ['minify'], ->
   generateSass()
   generateStylus()
   # minifyJs()
 
-gulp.task "deploy", ["build"], ->
-  exec "deploy .", (error, stdout, stderr) ->
-    console.log "result: " + stdout
-    console.log "exec error: " + error  if error isnt null
+gulp.task 'deploy', ['build'], ->
+  exec 'deploy .', (error, stdout, stderr) ->
+    console.log 'result: ' + stdout
+    console.log 'exec error: ' + error  if error isnt null
 
-gulp.task "browser-sync", ->
+gulp.task 'browser-sync', ->
   browserSync.init ["#{dest}/index.html"],
     server:
       baseDir: "#{dest}"
@@ -285,4 +284,5 @@ gulp.task "browser-sync", ->
     debugInfo: false
     notify: false
 
-gulp.task "default", ["watch"]
+
+gulp.task 'default', ['watch']
