@@ -1,5 +1,6 @@
 gulp            = require 'gulp'
 browserSync     = require 'browser-sync'
+reload          = browserSync.reload
 
 coffee          = require 'gulp-coffee'
 coffeelint      = require 'gulp-coffeelint'
@@ -154,7 +155,7 @@ generateStylus = (production = false) ->
     .pipe prefix('last 2 versions')
     .pipe concat targets.css
     .pipe gulp.dest dest
-    .pipe browserSync.reload({stream:true})
+    .pipe reload({stream:true})
 
 gulp.task 'stylus', generateStylus
 
@@ -167,7 +168,7 @@ generateSass = (production = false) ->
     .pipe prefix('last 2 versions')
     .pipe concat targets.css
     .pipe gulp.dest dest
-    .pipe browserSync.reload({stream:true})
+    .pipe reload({stream:true})
 
 # generateSassWMaps = (production = false) ->
 #   gulp.src paths.sass
