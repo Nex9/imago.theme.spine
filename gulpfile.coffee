@@ -26,6 +26,7 @@ rename          = require 'gulp-rename'
 insert          = require 'gulp-insert'
 gutil           = require 'gulp-util'
 size            = require 'gulp-size'
+sourcemaps      = require 'gulp-sourcemaps'
 watch           = require 'gulp-watch'
 Notification    = require 'node-notifier'
 notifier        = new Notification()
@@ -209,8 +210,10 @@ combineJs = (production = false) ->
   sources = files.map (file) -> "#{dest}/#{file}"
 
   gulp.src sources
+    .pipe sourcemaps.init()
     .pipe concat targets.js
     .pipe insert.append "jade.rethrow = #{rethrow.toLocaleString()};"
+    .pipe sourcemaps.write './maps'
     .pipe gulp.dest dest
     .pipe browserSync.reload {stream:true}
 
