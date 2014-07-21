@@ -25,25 +25,16 @@
         "gulp-coffeelint": "*",
         "gulp-commonjs": "*",
         "gulp-concat": "*",
-        "gulp-if": "*",
-        "gulp-imagemin": "*",
-        "gulp-inject": "*",
         "gulp-insert": "*",
         "gulp-jade": "*",
-        "gulp-load-plugins": "*",
-        "gulp-minify-css": "*",
         "gulp-order": "*",
         "gulp-plumber": "*",
         "gulp-rename": "*",
-        "gulp-resolve-dependencies": "*",
         "gulp-ruby-sass": "^0.5.0",
-        "gulp-size": "*",
         "gulp-sourcemaps": "*",
         "gulp-stylus": "^0.1.0",
         "gulp-uglify": "*",
         "gulp-util": "*",
-        "gutil": "*",
-        "node-notifier": "*",
-        "vinyl-source-stream": "*"
+        "node-notifier": "*"
     }
 }

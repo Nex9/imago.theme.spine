@@ -7,26 +7,18 @@ coffeelint      = require 'gulp-coffeelint'
 
 concat          = require 'gulp-concat'
 
-gulpif          = require 'gulp-if'
-
-imagemin        = require 'gulp-imagemin'
 jade            = require 'gulp-jade'
-minifyCSS       = require 'gulp-minify-css'
-# notify          = require 'gulp-notify'
 plumber         = require 'gulp-plumber'
 prefix          = require 'gulp-autoprefixer'
 stylus          = require 'gulp-stylus'
 sass            = require 'gulp-ruby-sass'
 uglify          = require 'gulp-uglify'
-# runSequence     = require 'run-sequence'
-# uncss           = require 'gulp-uncss'
 modRewrite      = require 'connect-modrewrite'
 
 common          = require 'gulp-commonjs'
 rename          = require 'gulp-rename'
 insert          = require 'gulp-insert'
 gutil           = require 'gulp-util'
-size            = require 'gulp-size'
 sourcemaps      = require 'gulp-sourcemaps'
 watch           = require 'gulp-watch'
 Notification    = require 'node-notifier'
@@ -139,8 +131,8 @@ gulp.task 'coffee', ->
     .pipe plumber(
       errorHandler: reportError
     )
-    .pipe coffee(bare: true).on('error', reportError)
     .pipe coffeelint()
+    .pipe coffee(bare: true).on('error', reportError)
     .pipe rename extname: ""
     .pipe common()
     .pipe concat targets.coffee
@@ -169,16 +161,6 @@ generateSass = (production = false) ->
     .pipe concat targets.css
     .pipe gulp.dest dest
     .pipe reload({stream:true})
-
-# generateSassWMaps = (production = false) ->
-#   gulp.src paths.sass
-#     .pipe plumber(
-#       errorHandler: reportError
-#     )
-#     .pipe sass {sourcemap: false, style: 'compressed'}
-#     .pipe prefix("last 2 versions")
-#     .pipe concat targets.css
-#     .pipe gulp.dest dest
 
 gulp.task 'sass', generateSass
 
@@ -218,7 +200,7 @@ combineJs = (production = false) ->
     .pipe gulp.dest dest
     .pipe browserSync.reload {stream:true}
 
-gulp.task 'combine', ['js'], combineJs
+gulp.task 'combine', combineJs
 
 gulp.task 'watch', ['sass', 'stylus', 'combine', 'browser-sync'], ->
 
@@ -252,7 +234,7 @@ gulp.task 'watch', ['sass', 'stylus', 'combine', 'browser-sync'], ->
   , ->
     gulp.start('scripts')
 
-  files = [targets.scripts, targets.modules, targets.jade, targets.coffee]
+  files = [targets.jade, targets.coffee, targets.scripts]
   sources = ("#{dest}/#{file}" for file in files)
 
   watch
