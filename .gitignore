@@ -1,2 +1,5 @@
-node_modules
+node_modules/
+app/bower_components/
+src/\.tmp*
 /.sass-cache/
+public/maps/*
