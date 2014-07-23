@@ -6,8 +6,22 @@ _ = require('underscore')
 Asset          = Nex.Models.Asset
 Setting        = Nex.Models.Setting
 
+# Header         = require('controllers/header')
+
+# Home           = require('controllers/home')
+# Contact        = require('controllers/contact')
+
+# Footer         = require('controllers/footer')
+
+Maintenance    = require('controllers/maintenance')
+
 Nex.debug      = window.location.host.indexOf(':') > 0
 Nex.tenant     = 'tenantName'
+Nex.language   = 'en'
+
+maintenance    = false
+
+Nex.data       = if window.location.host.indexOf('8080') + 1 then 'local' else 'online'
 
 Spine.Model.host = if (Nex.debug and Nex.data is 'online') then "http://#{Nex.tenant}.imagoapp.com/api/v2" else "/api/v2"
 
@@ -116,17 +130,23 @@ class App extends Spine.Controller
 
   render: ->
 
-    # @append @home = new Home
+    if maintenance
+      @append @maintenance     = new Maintenance
 
-    @manager.add(
-      # @home
-    )
+    else
+      # @append @header          = new Header
+
+      # @append @home            = new Home
+      # @append @contact         = new Contact
+
+      # @append @footer          = new Footer
+
+      # @manager.add(
+      #   @home
+      #   @contact
+      # )
 
 
-
-    # @delay =>
-    #   @navigate '/de/varta'
-    # , 500
 
   goHome: =>
     @navigate '/'
