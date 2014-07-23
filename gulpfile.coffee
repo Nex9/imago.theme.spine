@@ -177,7 +177,7 @@ minifyJs = ->
     .pipe uglify()
     .pipe gulp.dest dest
 
-gulp.task 'minify', ['combine'], minifyJs
+gulp.task 'minify', ['combineBuild'], minifyJs
 
 combineJs = (production = false) ->
   # We need to rethrow jade errors to see them
@@ -201,6 +201,8 @@ combineJs = (production = false) ->
     .pipe browserSync.reload {stream:true}
 
 gulp.task 'combine', combineJs
+
+gulp.task 'combineBuild', ['js'], combineJs
 
 gulp.task 'watch', ['sass', 'stylus', 'combine', 'browser-sync'], ->
 
