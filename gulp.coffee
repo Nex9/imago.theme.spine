@@ -22,8 +22,8 @@ paths =
   jade: ["#{src}/**/*.jade"]
   nexDev: ['node_modules/nex/lib/*.js']
   libs: [
-    'node_modules/jade/runtime.js'
-    'node_modules/commonjs-require-definition/require.js'
+    'node_modules/imago-gulp-spine/node_modules/jade/runtime.js'
+    'node_modules/imago-gulp-spine/node_modules/commonjs-require-definition/require.js'
   ]
   modules: [
    'nex/lib/nex'
