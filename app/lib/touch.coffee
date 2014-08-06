@@ -1,7 +1,7 @@
 {$} = require('spine')
 
 # $.support.touch = ('ontouchstart' of window)
-$.support.touch = !!navigator.userAgent.match(/iPad|iPhone|iPod/i)
+$.support.touch = !!navigator.userAgent.match(/Android|iPad|iPhone|iPod/i)
 
 touch = {}
 
