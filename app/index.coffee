@@ -17,7 +17,6 @@ Maintenance    = require('controllers/maintenance')
 
 Nex.debug      = window.location.host.indexOf(':') > 0
 Nex.tenant     = 'tenantName'
-Nex.language   = 'en'
 
 maintenance    = false
 
@@ -104,7 +103,12 @@ class App extends Spine.Controller
 
   appReady: =>
     @log 'appReady'
-    @setLanguage()
+
+    # set default language
+    language = window.navigator.userLanguage or window.navigator.language
+    Nex.language = language.split('-')[0]
+    Nex.country  = language.split('-')[1]
+
     options =
       history: true
       shim: false
@@ -114,10 +118,9 @@ class App extends Spine.Controller
     Spine.Route.setup options
 
 
-  setLanguage: =>
-    language = window.navigator.userLanguage or window.navigator.language
-    Nex.language = language.split('-')[0]
-    Nex.country = language.split('-')[1]
+  setLanguage: (Route, path) =>
+    path = path.split('/')
+    Nex.language = path[1] if !!path[1]
 
   setBodyClass: (Route, path) =>
     path = '/home' if path is '/'
