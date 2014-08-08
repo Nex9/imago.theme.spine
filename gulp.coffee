@@ -24,7 +24,7 @@ paths =
   libs: [
     'node_modules/imago-gulp-spine/node_modules/jade/runtime.js'
     'node_modules/imago-gulp-spine/node_modules/commonjs-require-definition/require.js'
-    'node_modules/imago-gulp-spine/node_modules/browser/browser.js
+    'node_modules/imago-gulp-spine/node_modules/browser/browser.js'
   ]
   modules: [
    'nex/lib/nex'
