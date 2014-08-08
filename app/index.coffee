@@ -113,10 +113,12 @@ class App extends Spine.Controller
       history: true
       shim: false
 
-    @render()
+    if maintenance
+      @append @maintenance = new Maintenance
+    else
+      @render()
 
-    Spine.Route.setup options
-
+      Spine.Route.setup options
 
   setLanguage: (Route, path) =>
     path = path.split('/')
@@ -132,22 +134,17 @@ class App extends Spine.Controller
     @navigate href if href and not href.match(/^http/)
 
   render: ->
+    # @append @header          = new Header
 
-    if maintenance
-      @append @maintenance     = new Maintenance
+    # @append @home            = new Home
+    # @append @contact         = new Contact
 
-    else
-      # @append @header          = new Header
+    # @append @footer          = new Footer
 
-      # @append @home            = new Home
-      # @append @contact         = new Contact
-
-      # @append @footer          = new Footer
-
-      # @manager.add(
-      #   @home
-      #   @contact
-      # )
+    # @manager.add(
+    #   @home
+    #   @contact
+    # )
 
 
 
