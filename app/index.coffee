@@ -113,12 +113,18 @@ class App extends Spine.Controller
       history: true
       shim: false
 
-    if maintenance
-      @append @maintenance = new Maintenance
+    if bowser.msie and bowser.version <= 8
+      @append new BrowserWarning bowser: bowser
+
+    else if maintenance
+      @append new Maintenance
+
     else
       @render()
 
       Spine.Route.setup options
+
+      @navigate window.location.pathname
 
   setLanguage: (Route, path) =>
     path = path.split('/')

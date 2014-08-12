@@ -73,7 +73,7 @@ else
         (not target[0].nodeName.match(/A/) and a.attr('href')?.match(/^http/)) or
         # el is Not an anchor and closest a has traget _blank
         (not target[0].nodeName.match(/A/) and a.attr('target') is '_blank')
-          console.log 'default prevented'
+          # console.log 'default prevented'
           e.preventDefault()
       target.trigger('tap')
 
