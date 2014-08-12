@@ -1,7 +1,6 @@
 # MAKE THIS MODULES GLOBALLY AVAILABLE
 require('json2ify')
 require('es5-shimify')
-require('jqueryify')
 require('underscore')
 
 require('spine')

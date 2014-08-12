@@ -23,6 +23,7 @@ paths =
   nexDev: ['node_modules/nex/lib/*.js']
   libs: [
     'node_modules/imago-gulp-spine/node_modules/jade/runtime.js'
+    'node_modules/imago-gulp-spine/node_modules/jquery/dist/jquery.js'
     'node_modules/imago-gulp-spine/node_modules/commonjs-require-definition/require.js'
     'node_modules/imago-gulp-spine/node_modules/browser/browser.js'
   ]
@@ -44,7 +45,6 @@ paths =
    'json2ify'
    'es5-shimify'
    'underscore'
-   'jqueryify'
    'spine/lib/spine'
    'spine/lib/local'
    'spine/lib/relation'
