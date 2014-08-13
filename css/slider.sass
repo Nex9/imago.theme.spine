@@ -73,6 +73,55 @@
   .slide.nextslide
     display: block
 
+
+.nexslider.fadeslide
+  .slide
+    transition: all .25s
+    // transition-property: transform, opacity
+    transform: translateX(-5%)
+    opacity: 0
+    display: none
+    z-index: 0
+
+  .slide.active
+    transform: translateX(0)
+    opacity: 1
+    display: block
+    z-index: 1
+
+  .slide.active ~ .slide
+    transform: translateX(5%)
+
+
+  .slide.prevslide,
+  .slide.nextslide
+    display: block
+
+
+.nexslider.pulsefade
+  .slide
+    transition: all .25s
+    // transition-property: transform, opacity
+    transform: translateX(-15%) scale(2)
+    opacity: 0
+    display: none
+    z-index: 0
+
+  .slide.active
+    transform: translateX(0) scale(1)
+    opacity: 1
+    display: block
+    z-index: 1
+
+  .slide.active ~ .slide
+    transform: translateX(15%) scale(2)
+
+
+  .slide.prevslide,
+  .slide.nextslide
+    display: block
+
+
 .nexslider.scale
   .slide
     transition: all .25s

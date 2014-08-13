@@ -25,7 +25,7 @@ paths =
     'node_modules/imago-gulp-spine/node_modules/jade/runtime.js'
     'node_modules/imago-gulp-spine/node_modules/jquery/dist/jquery.js'
     'node_modules/imago-gulp-spine/node_modules/commonjs-require-definition/require.js'
-    'node_modules/imago-gulp-spine/node_modules/browser/browser.js'
+    'node_modules/imago-gulp-spine/node_modules/bowser/bowser.js'
   ]
   modules: [
    'nex/lib/nex'
@@ -52,6 +52,7 @@ paths =
    'spine/lib/route'
    'spine/lib/manager'
    'spine/lib/list'
+   'jQuery'
  ]
 
 configGulp =
