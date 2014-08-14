@@ -2,7 +2,6 @@ require('lib/setup')
 _ = require('underscore')
 
 
-Asset            = Nex.Models.Asset
 Setting          = Nex.Models.Setting
 
 Nex.debug        = window.location.host.indexOf(':') > 0
@@ -10,9 +9,9 @@ Nex.debug        = window.location.host.indexOf(':') > 0
 Maintenance      = require('controllers/maintenance')
 BrowserWarning   = require('controllers/browserwarning')
 
-maintenance      = false
 Nex.data         = if window.location.host.indexOf('8080') + 1 then 'local' else 'online'
 Spine.Model.host = if (Nex.debug and Nex.data is 'online') then "http://#{Nex.tenant}.imagoapp.com/api/v2" else "/api/v2"
+
 
 class BaseApp extends Spine.Controller
 
@@ -94,7 +93,7 @@ class BaseApp extends Spine.Controller
     if bowser.msie and bowser.version <= 8
       @append new BrowserWarning bowser: bowser
 
-    else if maintenance
+    else if Nex.maintenance
       @append new Maintenance
 
     else

@@ -1,6 +1,4 @@
-BaseApp           = require('controllers/baseapp')
-Nex.tenant       = 'tenantName'
-maintenance      = false
+BaseApp          = require('controllers/baseapp')
 
 # Home           = require('controllers/home')
 # Header         = require('controllers/header')
@@ -10,9 +8,13 @@ maintenance      = false
 
 # Footer         = require('controllers/footer')
 
+Nex.tenant       = 'dealproductions'
+Nex.maintenance  = false
 
 
 class App extends BaseApp
+
+  logPrefix: '(App) index: '
 
   constructor: ->
     super
