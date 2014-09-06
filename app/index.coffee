@@ -8,7 +8,7 @@ BaseApp          = require('controllers/baseapp')
 
 # Footer         = require('controllers/footer')
 
-Nex.tenant       = 'dealproductions'
+Nex.tenant       = 'tenant'
 Nex.maintenance  = false
 
 

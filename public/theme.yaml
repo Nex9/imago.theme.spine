@@ -1,4 +1,4 @@
 gaeversion : default
-tenant     : <tenant here>
+tenant     : tenant
 debug      : False
 setdefault : False
