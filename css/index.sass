@@ -21,6 +21,11 @@
   color: black
   color: lighten(black, 35%)
 
+html
+  box-sizing: border-box
+
+*, *:before, *:after
+  box-sizing: inherit
 
 html,
 body
@@ -30,14 +35,20 @@ body
   // height: 100%
   background: white
   font-size: 13px
+  font-smoothing: antialiased
+  user-select: none
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
   -webkit-text-size-adjust: 100%
   -ms-text-size-adjust: 100%
-
+  -webkit-overflow-scrolling: touch
 body
   @extend .fontstyle
   overflow-y: auto
   overflow-x: hidden
+
+h1, h2, h3, h4, h5, h6
+a, p
+  user-select: auto
 
 a
   @extend .fontstyle
@@ -100,6 +111,14 @@ ul.list
 
 body > div:not(.active)
   display: none
+
+
+.imagoimage,
+.imagovideo
+  .spin
+    border-top: 6px solid rgba(180,180,180,0.2)
+  .spin2
+    border-top: 3px solid rgba(180,180,180,0.8)
 
 // widgets
 
