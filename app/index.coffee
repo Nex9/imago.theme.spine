@@ -1,3 +1,8 @@
+require('lib/setup')
+
+Nex.tenant       = 'tenant'
+Nex.maintenance  = false
+
 BaseApp          = require('controllers/baseapp')
 
 # Home           = require('controllers/home')
@@ -8,8 +13,6 @@ BaseApp          = require('controllers/baseapp')
 
 # Footer         = require('controllers/footer')
 
-Nex.tenant       = 'tenant'
-Nex.maintenance  = false
 
 
 class App extends BaseApp

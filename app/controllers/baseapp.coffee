@@ -1,4 +1,3 @@
-require('lib/setup')
 _ = require('underscore')
 
 
