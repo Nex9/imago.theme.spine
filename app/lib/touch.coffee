@@ -53,7 +53,10 @@ if $.support.touch
     e.preventDefault() unless target.attr('target') is
       '_blank' or target.attr('href')?.match(/^mailto/) or   # has Blank attribute
       target.attr('href')?.match(/^tel/) or                  # is a tel link
-      target.attr('href')?.match(/^http/)                    # is an http link
+      target.attr('href')?.match(/^http/) or                 # is an http link
+      target.attr('type')?.match(/checkbox/) or              # checkbox
+      target.attr('type')?.match(/checkbox|text/) or         # checkbox or text
+      target[0].nodeName.match(/LABEL/)                      # label
 else
   $ ->
     $('body').bind 'click', (e) ->
