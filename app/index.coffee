@@ -19,6 +19,9 @@ class App extends BaseApp
 
   logPrefix: '(App) index: '
 
+  events:
+    'tap a' : 'onNavigate'
+
   constructor: ->
     super
 
