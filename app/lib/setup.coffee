@@ -7,7 +7,9 @@ require('spine')
 require('spine/lib/ajax')
 require('spine/lib/manager')
 require('spine/lib/route')
-require('lib/touch')
+# require('lib/touch')
+
+require('lib/jquery.mobile.custom')
 
 require('lib/screenfull')
 
