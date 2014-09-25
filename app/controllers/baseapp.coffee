@@ -16,14 +16,12 @@ class BaseApp extends Spine.Controller
 
   logPrefix: '(App) index: '
 
-  events:
-    'tap a' : 'onNavigate'
-
   constructor: ->
     super
 
     # clear body for app
     @el.empty()
+    @el.removeClass 'nojs'
 
     @models = Nex.Models
 
@@ -114,7 +112,25 @@ class BaseApp extends Spine.Controller
     document.body.className = (classes.replace(/\//g, ' ')).trim?()
 
   onNavigate: (e) =>
-    href = $(e.target).closest('a').attr('href')
+    target = $(e.target)
+    a = target.closest('a')
+
+    unless target.attr('target') is '_blank' or           # blank atribute
+      target.attr('href')?.match(/^mailto/) or            # mailto link
+      target.attr('href')?.match('/api/') or
+      target.attr('href')?.match(/^tel/) or               # tel link
+      target.attr('href')?.match(/^http/) or              # http link
+      target.attr('type')?.match(/checkbox/) or           # checkbox
+      target.attr('type')?.match(/checkbox|text/) or      # checbox or text
+      target[0].nodeName.match(/LABEL/) or                # label
+      # el is NOT an anchor and closest a has external link
+      (not target[0].nodeName.match(/A/) and a.attr('href')?.match(/^http/)) or
+      # el is Not an anchor and closest a has traget _blank
+      (not target[0].nodeName.match(/A/) and a.attr('target') is '_blank')
+        e.preventDefault()
+
+    href = a.attr('href')
+
     @navigate href if href and not href.match(/^http/)
 
 
