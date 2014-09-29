@@ -34,11 +34,13 @@
     var exports = this;
 
     jQuery(function(){
-      $("body").removeClass('nojs');
-      var App = require("index");
-      exports.app = new App({el: $("body")});
-    });
+      var body = $("body");
+      body.empty();
+      body.removeClass('nojs');
 
+      var App = require("index");
+      exports.app = new App({el: body});
+    });
   </script>
 
   <!-- Please call pinit.js only once per page -->

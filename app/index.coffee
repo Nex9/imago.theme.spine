@@ -2,6 +2,8 @@ require('lib/setup')
 
 Nex.tenant       = 'tenant'
 Nex.maintenance  = false
+Nex.language     = 'en'
+Nex.currency     = 'USD'
 
 BaseApp          = require('controllers/baseapp')
 

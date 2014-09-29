@@ -19,10 +19,6 @@ class BaseApp extends Spine.Controller
   constructor: ->
     super
 
-    # clear body for app
-    @el.empty()
-    @el.removeClass 'nojs'
-
     @models = Nex.Models
 
     # bind window resize and scroll

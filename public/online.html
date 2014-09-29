@@ -60,14 +60,17 @@
   </script>
 
   <script type="text/javascript">
+    var _gaq = _gaq || [];
     var exports = this;
 
     jQuery(function(){
-      $("body").removeClass('nojs');
-      var App = require("index");
-      exports.app = new App({el: $("body")});
-    });
+      var body = $("body");
+      body.empty();
+      body.removeClass('nojs');
 
+      var App = require("index");
+      exports.app = new App({el: body});
+    });
   </script>
 
 </head>
