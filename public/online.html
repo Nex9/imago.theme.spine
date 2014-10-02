@@ -3,12 +3,13 @@
 <html>
 <head>
   {% set settings = imago.basesettings() %}
+  {% set versoin  = handler.version %}
   <title>{{ settings.get('title', '') }}</title>
 
   <!-- a nex9.com site -->
   <link rel="stylesheet" href="//static.imagoapp.com/static/lib/fontawesome/4/css/font-awesome.min.css">
   <link rel="icon" href="{{ settings.get('icon') }}=s32">
-  <link rel="stylesheet" href="/{{ handler.version }}/application.css" type="text/css">
+  <link rel="stylesheet" href="/{{ version }}/application.css" type="text/css">
 
   <meta name="google-site-verification" content="{{ settings.get('google_verify', '') }}" />
 
@@ -39,7 +40,7 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed">
 
   <script src="//maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
-  <script src="/{{ handler.version }}/application.js" type="text/javascript"></script>
+  <script src="/{{ version }}/application.js" type="text/javascript"></script>
   <script src="//www.imagoapp.com/static/lib/greensock/1/TweenMax.min.js" type="text/javascript"></script>
 
   <script src="//use.typekit.net/zkr1rpu.js"></script>
