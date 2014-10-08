@@ -8,18 +8,6 @@
 
 
 
-.bold
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-  text-transform: uppercase
-  font-size: 22px
-  color: black
-  line-height: normal
-
-.fontstyle
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-  line-height: normal
-  color: black
-  color: lighten(black, 35%)
 
 html
   box-sizing: border-box
@@ -41,8 +29,9 @@ body
   -webkit-text-size-adjust: 100%
   -ms-text-size-adjust: 100%
   -webkit-overflow-scrolling: touch
+  z-index: 0
+
 body
-  @extend .fontstyle
   overflow-y: auto
   overflow-x: hidden
 
@@ -51,7 +40,6 @@ a, p
   user-select: auto
 
 a
-  @extend .fontstyle
   text-decoration: none
 
 img
@@ -68,7 +56,6 @@ h3,
 h4,
 h5,
 h6
-  @extend .bold
   color: #444
   font-weight: 200
   margin: 10px 0
@@ -89,7 +76,6 @@ h4
 
 p,
 li
-  @extend .fontstyle
   font-smoothing: antialiased
   line-height: 17px
   color: lighten(black, 50%)
@@ -122,6 +108,27 @@ body > div:not(.active)
 
 // widgets
 
+.nexslider
+  > .next,
+  > .prev
+    z-index: 10
+    position: absolute
+    top: 20px
+    bottom: 50px
+  > .next
+    right: 0
+    left: 60%
+    cursor: url('i/right@2x.svg'), auto
+  > .prev
+    right: 60%
+    left: 0
+    cursor: url('i/left@2x.svg'), auto
+  .slide,
+  .imagoimage,
+  .imagovideo
+    +pos()
+    .imagox23
+      opacity: 1
 
 // sections
 

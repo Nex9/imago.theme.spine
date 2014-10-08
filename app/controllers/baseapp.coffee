@@ -57,19 +57,19 @@ class BaseApp extends Spine.Controller
     return if @resizeing
     @window.trigger 'resizestart'
     @resizeing = true
-    @window.one 'resizestop', => @resizeing = false
+    @window.one 'resizestop.baseapp', => @resizeing = false
 
   onScrollStart: (e) =>
     return if @scrolling
     @window.trigger 'scrollstart'
     @scrolling = true
-    @window.one 'scrollstop', => @scrolling = false
+    @window.one 'scrollstop.baseapp', => @scrolling = false
 
   onMouseWheelStart: (e) =>
     return if @isMouseWheeling
     @window.trigger 'mousewheelstart'
     @isMouseWheeling = true
-    @window.one 'mousewheelstop', => @isMouseWheeling = false
+    @window.one 'mousewheelstop.bassapp', => @isMouseWheeling = false
 
   appReady: =>
     @log 'appReady'
