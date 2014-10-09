@@ -540,7 +540,7 @@ if ( eventCaptureSupported ) {
 (function( $, window, undefined ) {
 	var $document = $( document ),
 		supportTouch = $.mobile.support.touch,
-		scrollEvent = "touchmove scroll",
+		scrollEvent = "touchmove.jqm scroll.jqm",
 		touchStartEvent = supportTouch ? "touchstart" : "mousedown",
 		touchStopEvent = supportTouch ? "touchend" : "mouseup",
 		touchMoveEvent = supportTouch ? "touchmove" : "mousemove";
