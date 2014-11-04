@@ -20,12 +20,13 @@ paths =
   ]
   js: ["#{src}/**/*.js"]
   jade: ["#{src}/**/*.jade"]
-  nexDev: ['node_modules/nex/lib/*.js']
+  nexDev: ["node_modules/imago-gulp-spine/node_modules/nex/lib/*.js"]
   libs: [
     'node_modules/imago-gulp-spine/node_modules/jade/runtime.js'
     'node_modules/imago-gulp-spine/node_modules/jquery/dist/jquery.js'
     'node_modules/imago-gulp-spine/node_modules/commonjs-require-definition/require.js'
     'node_modules/imago-gulp-spine/node_modules/bowser/bowser.js'
+    'bower_components/packery/dist/packery.pkgd.js'
   ]
   modules: [
    'nex/lib/nex'
