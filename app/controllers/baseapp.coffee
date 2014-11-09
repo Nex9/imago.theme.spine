@@ -104,8 +104,13 @@ class BaseApp extends Spine.Controller
 
   setBodyClass: (Route, path) =>
     path = '/home' if path is '/'
-    classes = "#{path} #{@manager?.getActive()?.className or ''}"
-    document.body.className = (classes.replace(/\//g, ' ')).trim?()
+    classes = path.split('/')
+    classes.shift() # remove first, its always empty because of the trailing /
+
+    con = @manager?.getActive()?.className or ''
+    classes.push(con) if con
+
+    document.body.className = _.uniq(classes, true).join ' '
 
   onNavigate: (e) =>
     target = $(e.target)
