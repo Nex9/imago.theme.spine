@@ -11,6 +11,8 @@
   <link rel="icon" href="{{ settings.get('icon') }}=s32">
   <link rel="stylesheet" href="/{{ version }}/application.css" type="text/css">
 
+  {{ robotsmeta }}
+
   <meta name="google-site-verification" content="{{ settings.get('google_verify', '') }}" />
   <meta name="description" content="{{ imago.get(page, 'description') or settings.get('description', '')  }}">
   {% set site_keywords = settings.get('keywords', '') + ', ' if settings.get('keywords', '') else '' %}
