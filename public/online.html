@@ -11,6 +11,14 @@
   <link rel="icon" href="{{ settings.get('icon') }}=s32">
   <link rel="stylesheet" href="/{{ version }}/application.css" type="text/css">
 
+  <style type="text/css">
+    body.nojs > div {
+      display: block;
+    }
+  </style>
+
+  {{ robotsmeta }}
+
   <meta name="google-site-verification" content="{{ settings.get('google_verify', '') }}" />
   <meta name="description" content="{{ imago.get(page, 'description') or settings.get('description', '')  }}">
   {% set site_keywords = settings.get('keywords', '') + ', ' if settings.get('keywords', '') else '' %}
@@ -76,78 +84,95 @@
 </head>
 <body class="nojs">
 
-    <h1 class="title">
-      <a href="/">{{ settings.get('title', '') }}</a>
-    </h1>
+    <header>
+      <h1 class="title"><a href="/">{{ settings.get('title', '') }}</a></h1>
+    </header>
 
-    {% set hl = imago.get(page, 'headline', '') %}
-    {% set headline = hl if hl != '/' else 'home' %}
-    <h2>{{ headline }}</h2>
-    <h3>{{ imago.get(page, 'title', '') }}</h3>
-    <p>{{ imago.get(page, 'description', '') }}</p>
+    <div class="item">
 
-    {% if hasattr(page, 'assets') %}
-      {% if pagenum %}
-        {% set result, next, previous = handler.get_assets(page.path, asset_kind='all', page=pagenum) %}
-      {% else %}
-        {% set result = handler.get_assets(page.path, asset_kind='all') %}
-      {% end %}
-      {% if result and hasattr(result, 'assets') %}
-      <ul>
-        {% for asset in result.assets %}
-        <li>
-          {% if asset.has_key('path') and asset.has_key('count') %}
-              <a class="Collection"
-                  data-uuid="{{ imago.get(asset, 'uuid') }}"
-                  data-resolution="{{ imago.get(asset,'resolution') }}"
-                  href="{{ imago.get(asset, 'path') }}"
-                  title="{{ imago.get(asset, 'title') }}">
+      {% set hl = imago.get(page, 'headline', '') %}
+      {% set headline = hl if hl != '/' else 'home' %}
+      <h2>{{ headline }}</h2>
+      <h3>{{ imago.get(page, 'title', '') }}</h3>
+      <p>{{ imago.get(page, 'description', '') }}</p>
+      <div class="text">
+        {{ imago.get(page, 'html', '') }}
+        {{ imago.get(page, 'text', '') }}
+      </div>
+    </div>
 
-          {% if asset.get('kind') == 'Video' %}
-                <video poster="{{ asset.get('serving_url' )}}=s400">
-                  <source src="/assets/play_redirect?uuid={{ asset.get('uuid') }}&codec=mp4&quality=sd&max_size=288p" type="video/mp4">
-                  <source src="/assets/play_redirect?uuid={{ asset.get('uuid') }}&codec=webm&quality=sd" type="video/ogg">
-                <video>
-            {% elif asset.get('serving_url') %}
-              <img src="{{ asset.get('serving_url' )}}=s400" />
-            {% end %}
-              <h2>{{ imago.get(asset, 'headline', '') }}</h2>
-              <h3>{{ imago.get(asset, 'title', '') }}</h3>
-              <p>{{ imago.get(asset, 'description', '') }}</p>
-              {{ imago.get(asset, 'html', '') }}
-              </a>
-          {% else %}
-            {%  if asset.get('kind') == 'Video' %}
-                <video poster="{{ asset.get('serving_url' )}}=s400">
-                  <source src="/assets/api/play_redirect?uuid={{ asset.get('uuid') }}&codec=mp4&quality=sd&max_size=288p" type="video/mp4">
-                  <source src="/assets/api/play_redirect?uuid={{ asset.get('uuid') }}&codec=webm&quality=sd" type="video/ogg">
-                <video>
-            {% elif asset.get('serving_url') %}
-              <img src="{{ asset.get('serving_url' )}}=s400" />
-            {% end %}
-            <h2>{{ imago.get(asset, 'headline', '') }}</h2>
-            <h3>{{ imago.get(asset, 'title', '') }}</h3>
-            <p>{{ imago.get(asset, 'description', '') }}</p>
-            {{ imago.get(asset, 'html', '') }}
+    <div class="content">
+      {% if hasattr(page, 'assets') %}
 
-          {% end %}
-        </li>
+        {% if pagenum %}
+          {% set result, next, previous = handler.get_assets(page.path, asset_kind='all', page=pagenum) %}
+        {% else %}
+          {% set result = handler.get_assets(page.path, asset_kind='all') %}
         {% end %}
-      </ul>
-    {% end %}
-    {% if pagenum %}
-      {% set nextlink, prevlink = handler.pagelinks(next=next, prev=previous) %}
-      {% if next %}<a href="{{ nextlink }}">next</p>{% end %}
-      {% if previous %}<a href="{{ prevlink }}">previous</p>{% end %}
-    {% end %}
-  {% else %}
-    <img src="{{ imago.get(page, 'serving_url') }}=s400" />
-    <h2>{{ imago.get(page, 'headline', '') }}</h2>
-    <h3>{{ imago.get(page, 'title', '') }}</h3>
-    <p>{{ imago.get(page, 'description', '') }}</p>
-    {{ imago.get(page, 'html', '') }}
-  {% end %}
 
+        {% if result and hasattr(result, 'assets') %}
+
+            <ul>
+              {% for asset in result.assets %}
+                  <li class="{{ asset.get('kind').lower() }}">
+
+                    {% if asset.has_key('path') and asset.has_key('count') %}
+
+                        <a href="{{ imago.get(asset, 'path') }}">
+                          <h2>{{ imago.get(asset, 'headline', '') }}</h2>
+                          <h3>{{ imago.get(asset, 'title', '') }}</h3>
+                          <p>{{ imago.get(asset, 'description', '') }}</p>
+                          {% if asset.get('serving_url') %}
+                              <img src="{{ asset.get('serving_url' )}}=s400" />
+                          {% end %}
+                          <div class="text">
+                            {{ imago.get(asset, 'html', '') }}
+                            {{ imago.get(asset, 'text', '') }}
+                          </div>
+                        </a>
+
+                    {% elif asset.get('kind') != 'Collection' %}
+
+                        <h2>{{ imago.get(asset, 'headline', '') }}</h2>
+                        <h3>{{ imago.get(asset, 'title', '') }}</h3>
+                        <p>{{ imago.get(asset, 'description', '') }}</p>
+                        <div class="text">
+                          {{ imago.get(asset, 'html', '') }}
+                          {{ imago.get(asset, 'text', '') }}
+                        </div>
+                    {% end %}
+                    {% if asset.get('kind') == 'Video' %}
+                          <video poster="{{ asset.get('serving_url' )}}=s400">
+                            <source src="/assets/play_redirect?uuid={{ asset.get('uuid') }}&codec=mp4&quality=sd&max_size=288p" type="video/mp4">
+                            <source src="/assets/play_redirect?uuid={{ asset.get('uuid') }}&codec=webm&quality=sd" type="video/ogg">
+                          <video>
+                    {% elif asset.get('serving_url') %}
+                        <img src="{{ asset.get('serving_url' )}}=s400" />
+                    {% end %}
+                  </li>
+              {% end %}
+            </ul>
+        {% end %}
+      {% if pagenum %}
+        {% set nextlink, prevlink = handler.pagelinks(next=next, prev=previous) %}
+        {% if next %}<a href="{{ nextlink }}">next</p>{% end %}
+        {% if previous %}<a href="{{ prevlink }}">previous</p>{% end %}
+      {% end %}
+
+    {% else %}
+      {% if imago.get(page, 'serving_url') %}
+        <img src="{{ imago.get(page, 'serving_url') }}=s400" />
+      {% end %}
+      <h2>{{ imago.get(page, 'headline', '') }}</h2>
+      <h3>{{ imago.get(page, 'title', '') }}</h3>
+      <p>{{ imago.get(page, 'description', '') }}</p>
+      <div class="text">
+        {{ imago.get(page, 'html', '') }}
+        {{ imago.get(page, 'text', '') }}
+      </div>
+    {% end %}
+
+  </div>
 
 
 </body>
