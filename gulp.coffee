@@ -42,6 +42,7 @@ paths =
    'nex/lib/slider'
    'nex/lib/tabs'
    'nex/lib/html'
+   'nex/lib/shop'
    'json2ify'
    'es5-shimify'
    'underscore'
