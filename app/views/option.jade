@@ -1,0 +1,15 @@
+div.selected= item[name] || Nex.Utils.singularize(name)
+
+div.dropdown
+  each option, i in options
+    - if (!option) continue;
+    -var status = checkOption(option)
+    if status.notAvailable
+      div.not-available(data-value="#{option}")= option
+    else if status.soldOut
+      div.soldout(data-value="#{option}")= option
+    else if status.onSale
+      div.choice.sale(data-value="#{option}")= option
+    else
+      div.choice(data-value="#{option}")= option
+
