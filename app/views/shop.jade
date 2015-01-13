@@ -1,0 +1,22 @@
+if asset.variants.length
+  .price(class="#{asset.discounted() ? 'sale' : ''}")
+    - var prices = asset.variants[0].meta.price.value
+    - var discounts = (onSale) ? variant.meta.discounted.value : false
+    if discounts
+      h3.old-price!= Nex.Utils.toPrice(prices[Nex.currency], Nex.currency)
+      h3.new-price!= Nex.Utils.toPrice(discounts[Nex.currency], Nex.currency)
+    else
+      h3.default!= Nex.Utils.toPrice(prices[Nex.currency], Nex.currency)
+
+
+span.error
+
+- var opts = asset.options()
+//- - console.log(opts.stock[0])
+
+if opts.stocks.length
+  .wrapper
+
+  a.add(class="#{(variant) ? 'active' : ''}") add to bag
+else
+  div.soldoutButton sold out
