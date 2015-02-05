@@ -1,0 +1,21 @@
+{
+  "name": "angular-nex9-theme",
+  "version": "0.0.1",
+  "authors": [
+    "Christof Haemmerle <reco@nex9.com>"
+  ],
+  "license": "MIT",
+  "homepage": "http://nex9.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "breakpoint-sass": "~2.5.0",
+    "fake-breakpoint-slicer": "douglasduteil/breakpoint-slicer"
+  }
+}
